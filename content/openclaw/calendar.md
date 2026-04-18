@@ -48,9 +48,9 @@ Zenbook (Ubuntu Server)
 
 ## 현재 핵심 계정/이름
 
-- Ubuntu 사용자명: `jaehong`
-- 서버 호스트명: `zenai`
-- Google 계정: `cantavoidjustdo04@gmail.com`
+- Ubuntu 사용자명: `[내 서버 사용자명]`
+- 서버 호스트명: `[내 서버 호스트명]`
+- Google 계정: `[내 구글 계정]`
 
 ---
 
@@ -73,9 +73,9 @@ Ubuntu Server ISO로 설치 USB 생성.
 - OpenSSH server 설치 체크
 - 서드파티 드라이버는 기본적으로 체크하지 않음
 - 계정 생성:
-  - name: `Jaehong Park`
-  - server name: `zenai`
-  - username: `jaehong`
+  - name: `[내 이름]`
+  - server name: `[내 서버 호스트명]`
+  - username: `[내 서버 사용자명]`
 
 ---
 
@@ -112,7 +112,7 @@ hostname -I
 예시:
 
 ```bash
-ssh jaehong@192.168.0.34
+ssh [내 서버 사용자명]@[내 서버 로컬 IP 주소]
 ```
 
 ---
@@ -122,7 +122,7 @@ ssh jaehong@192.168.0.34
 맥북 터미널에서:
 
 ```bash
-ssh jaehong@192.168.0.34
+ssh [내 서버 사용자명]@[내 서버 로컬 IP 주소]
 ```
 
 처음 접속 시:
@@ -206,24 +206,24 @@ tailscale ip -4
 예시 Tailscale IP:
 
 ```text
-100.97.204.32
+[내 서버 Tailscale IP 주소]
 ```
 
 ## 접속 예시
 
 ```bash
-tailscale ssh jaehong@100.97.204.32
+tailscale ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 또는 일반 SSH로도 가능:
 
 ```bash
-ssh jaehong@100.97.204.32
+ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 ## 주의
 
-`tailscale ssh jaehong@zenai` 가 안 될 경우:
+`tailscale ssh [내 서버 사용자명]@[내 서버 호스트명]` 가 안 될 경우:
 
 - MagicDNS 이름이 안 풀리는 상태일 수 있음
 - 이때는 **이름 대신 Tailscale IP로 붙는 게 가장 확실함**
@@ -364,7 +364,7 @@ Google Cloud Console에서:
 맥에서 서버로 업로드:
 
 ```bash
-scp ~/Downloads/<파일명>.json jaehong@192.168.0.34:~
+scp ~/Downloads/<파일명>.json [내 서버 사용자명]@[내 서버 로컬 IP 주소]:~
 ```
 
 서버에서 확인:
@@ -428,7 +428,7 @@ gog auth credentials ~/YOUR_FILE.json
 쓰기 권한 포함 Calendar 인증:
 
 ```bash
-gog auth add cantavoidjustdo04@gmail.com --services calendar --manual
+gog auth add [내 구글 계정] --services calendar --manual
 ```
 
 진행 방식:
@@ -452,7 +452,7 @@ gog auth add cantavoidjustdo04@gmail.com --services calendar --manual
 
 - Google Cloud Console → **Audience**
 - **테스트 사용자 추가**
-- `cantavoidjustdo04@gmail.com` 등록
+- `[내 구글 계정]` 등록
 
 ## 15-3. 인증 상태 확인
 
@@ -468,7 +468,7 @@ gog auth list
 `gog auth status` 또는 Calendar 명령 실행 시 아래 문구가 뜰 수 있다.
 
 ```text
-Enter passphrase to unlock "/home/jaehong/.config/gogcli/keyring":
+Enter passphrase to unlock "/home/[내 서버 사용자명]/.config/gogcli/keyring":
 ```
 
 이 비밀번호는 **gog keyring unlock passphrase**다.
@@ -482,7 +482,7 @@ export GOG_KEYRING_PASSWORD='비밀번호'
 예시:
 
 ```bash
-export GOG_KEYRING_PASSWORD='520410'
+export GOG_KEYRING_PASSWORD='[내 keyring 비밀번호]'
 ```
 
 ---
@@ -490,15 +490,15 @@ export GOG_KEYRING_PASSWORD='520410'
 # 17. Google Calendar 목록 확인
 
 ```bash
-gog -a cantavoidjustdo04@gmail.com calendar calendars --plain
+gog -a [내 구글 계정] calendar calendars --plain
 ```
 
 실제 확인된 캘린더 예시:
 
 ```text
 ID                                      NAME                            ROLE
-cantavoidjustdo04@gmail.com             cantavoidjustdo04@gmail.com     owner
-family11899885407711846257@group.calendar.google.com    가족            owner
+[내 구글 계정]                           [내 기본 캘린더]                 owner
+[가족 캘린더 ID]                         가족                            owner
 ```
 
 ---
@@ -512,9 +512,9 @@ family11899885407711846257@group.calendar.google.com    가족            owner
 ## 테스트용 예시
 
 ```bash
-CAL_ID='cantavoidjustdo04@gmail.com'
+CAL_ID='[내 기본 캘린더 ID]'
 
-gog -a cantavoidjustdo04@gmail.com calendar create "$CAL_ID" \
+gog -a [내 구글 계정] calendar create "$CAL_ID" \
   --summary "테너 특순 연습" \
   --from 2026-04-12T13:00:00+09:00 \
   --to 2026-04-12T14:00:00+09:00 \
@@ -525,7 +525,7 @@ gog -a cantavoidjustdo04@gmail.com calendar create "$CAL_ID" \
 추가 예시:
 
 ```bash
-gog -a cantavoidjustdo04@gmail.com calendar create "$CAL_ID" \
+gog -a [내 구글 계정] calendar create "$CAL_ID" \
   --summary "테너 특순 연습" \
   --from 2026-04-19T20:00:00+09:00 \
   --to 2026-04-19T21:00:00+09:00 \
@@ -558,7 +558,7 @@ OpenClaw 서비스가 읽도록 `.env` 및 지침 파일 추가.
 mkdir -p ~/.openclaw
 cat >> ~/.openclaw/.env <<'EOF'
 PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin
-GOG_KEYRING_PASSWORD=520410
+GOG_KEYRING_PASSWORD=[내 keyring 비밀번호]
 EOF
 chmod 600 ~/.openclaw/.env
 ```
@@ -568,11 +568,11 @@ chmod 600 ~/.openclaw/.env
 ```bash
 mkdir -p ~/.openclaw/workspace
 cat > ~/.openclaw/workspace/AGENTS.md <<'EOF'
-You are ZenAI, Jaehong's personal calendar assistant.
-When Jaehong asks in Telegram to add a schedule, create a Google Calendar event.
+You are [내 비서 이름], [내 이름]'s personal calendar assistant.
+When [내 이름] asks in Telegram to add a schedule, create a Google Calendar event.
 Default timezone is Asia/Seoul.
 Use the host CLI tool "gog" for Google Calendar actions.
-Until explicitly approved, write only to the calendar "cantavoidjustdo04@gmail.com".
+Until explicitly approved, write only to the calendar "[내 기본 캘린더 ID]".
 If the date or time is ambiguous, ask one short follow-up question.
 After creating an event, reply with title, date, start time, end time, and calendar name.
 Do not modify or delete events unless explicitly requested.
@@ -585,8 +585,8 @@ EOF
 cat > ~/.openclaw/workspace/TOOLS.md <<'EOF'
 Google Calendar is managed with gog.
 For event creation, gog uses --summary, --from, --to, --location, and --description.
-Account: cantavoidjustdo04@gmail.com
-Default calendar: cantavoidjustdo04@gmail.com
+Account: [내 구글 계정]
+Default calendar: [내 기본 캘린더 ID]
 EOF
 ```
 
@@ -675,7 +675,7 @@ tailscale ip -4
 그리고 맥에서:
 
 ```bash
-ssh jaehong@100.x.x.x
+ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 ---
@@ -729,7 +729,7 @@ sudo netplan apply
 같은 집 네트워크에서는 원래 이렇게 접속 가능:
 
 ```bash
-ssh jaehong@192.168.0.34
+ssh [내 서버 사용자명]@[내 서버 로컬 IP 주소]
 ```
 
 즉 Tailscale은 필수가 아니라:
@@ -738,18 +738,18 @@ ssh jaehong@192.168.0.34
 
 ## Tailscale SSH 이름 해석 문제
 
-`tailscale ssh jaehong@zenai` 가 안 되면 MagicDNS 이름 해석 문제일 수 있음.
+`tailscale ssh [내 서버 사용자명]@[내 서버 호스트명]` 가 안 되면 MagicDNS 이름 해석 문제일 수 있음.
 
 이 경우 이름 대신 **Tailscale IP** 사용:
 
 ```bash
-tailscale ssh jaehong@100.97.204.32
+tailscale ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 또는:
 
 ```bash
-ssh jaehong@100.97.204.32
+ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 ---
@@ -768,8 +768,8 @@ systemctl status ssh
 ## SSH 접속
 
 ```bash
-ssh jaehong@192.168.0.34
-ssh jaehong@100.97.204.32
+ssh [내 서버 사용자명]@[내 서버 로컬 IP 주소]
+ssh [내 서버 사용자명]@[내 서버 Tailscale IP 주소]
 ```
 
 ## 절전 방지
@@ -803,7 +803,7 @@ openclaw logs --follow
 which gog
 gog --help
 gog auth status
-gog -a cantavoidjustdo04@gmail.com calendar calendars --plain
+gog -a [내 구글 계정] calendar calendars --plain
 ```
 
 ---

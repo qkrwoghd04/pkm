@@ -1,5 +1,5 @@
 ---
-title: security setting
+title: 서버 보안
 type: playbook
 tags:
   - security
@@ -7,13 +7,13 @@ tags:
   - ssh
 ---
 
-# ZenAI 서버 기본 보안 설정 정리
+# Ubuntu Server 기본 보안 설정 정리
 
 이 문서는 이번 세션에서 진행한 **기본 보안 설정**을 처음부터 다시 따라갈 수 있도록 정리한 문서다.
 
 대상 환경:
 
-- 서버: Ubuntu Server (`zenai`)
+- 서버: Ubuntu Server (`[내 서버 호스트명]`)
 - 네트워크: 현재 **Wi‑Fi**
 - 원격 접속: **Tailscale + SSH**
 - 관리 단말: **Mac**
@@ -125,7 +125,7 @@ ssh-keygen -lf ~/.ssh/id_ed25519.pub
 맥에서 실행:
 
 ```bash
-ssh-keygen -t ed25519 -a 64 -C "jaehong-mac"
+ssh-keygen -t ed25519 -a 64 -C "[내 맥 SSH 키 주석]"
 ```
 
 ---
@@ -135,13 +135,13 @@ ssh-keygen -t ed25519 -a 64 -C "jaehong-mac"
 맥에서 실행:
 
 ```bash
-cat ~/.ssh/id_ed25519.pub | ssh jaehong@<서버_Tailscale_IP> 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP 주소] 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 ```
 
 예시:
 
 ```bash
-cat ~/.ssh/id_ed25519.pub | ssh jaehong@100.97.204.32 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP 주소] 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 ```
 
 ## 5-1. 서버에 등록됐는지 확인
@@ -159,7 +159,7 @@ cat ~/.ssh/authorized_keys
 맥의 **새 터미널**에서 실행:
 
 ```bash
-ssh jaehong@<서버_Tailscale_IP>
+ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 ```
 
 비밀번호 없이 로그인되거나, 최소한 공개키 방식으로 정상 접속되면 다음 단계로 진행한다.
@@ -199,13 +199,13 @@ sudo ufw default allow outgoing
 서버에서 실행:
 
 ```bash
-sudo ufw allow proto tcp from <맥_Tailscale_IP> to any port 22
+sudo ufw allow proto tcp from [내 맥 Tailscale IP 주소] to any port 22
 ```
 
 예시:
 
 ```bash
-sudo ufw allow proto tcp from 100.101.102.103 to any port 22
+sudo ufw allow proto tcp from [내 맥 Tailscale IP 주소] to any port 22
 ```
 
 이 규칙은 **서버 SSH(포트 22)** 를 **내 맥 한 대의 Tailscale IP** 에서만 허용한다.
@@ -230,7 +230,7 @@ sudo ufw status numbered
 필요하면 번호로 삭제:
 
 ```bash
-sudo ufw delete <번호>
+sudo ufw delete [규칙 번호]
 ```
 
 예시:
@@ -261,7 +261,7 @@ sudo ufw status verbose
 맥의 새 터미널에서:
 
 ```bash
-ssh jaehong@<서버_Tailscale_IP>
+ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 ```
 
 정상 접속돼야 한다.
@@ -271,7 +271,7 @@ ssh jaehong@<서버_Tailscale_IP>
 예시:
 
 ```bash
-ssh jaehong@172.20.10.13
+ssh [내 서버 사용자명]@[서버 Wi-Fi/LAN IP 주소]
 ```
 
 이건 실패하거나 timeout 되는 것이 정상이다.
@@ -302,7 +302,7 @@ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak.$(date +%F-%H%M%S)
 서버에서 실행:
 
 ```bash
-sudo tee /etc/ssh/sshd_config.d/99-zenai-hardening.conf >/dev/null <<'EOF'
+sudo tee /etc/ssh/sshd_config.d/99-ssh-hardening.conf >/dev/null <<'EOF'
 PubkeyAuthentication yes
 PasswordAuthentication no
 KbdInteractiveAuthentication no
@@ -351,7 +351,7 @@ sudo systemctl status ssh --no-pager
 맥의 **새 터미널**에서:
 
 ```bash
-ssh jaehong@<서버_Tailscale_IP>
+ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 ```
 
 정상 접속되면 하드닝 성공이다.
@@ -428,7 +428,7 @@ sudo sshd -t
 ```
 
 여기서 에러가 나면,
-`/etc/ssh/sshd_config.d/99-zenai-hardening.conf` 내용을 다시 점검한다.
+`/etc/ssh/sshd_config.d/99-ssh-hardening.conf` 내용을 다시 점검한다.
 
 ## 15-3. UFW 규칙 확인
 
@@ -449,8 +449,8 @@ sudo systemctl status ssh --no-pager
 
 완료 상태는 아래와 같아야 한다.
 
-- [ ] 맥에서 `ssh jaehong@<서버_Tailscale_IP>` 로 접속 가능
-- [ ] 맥에서 `ssh jaehong@<서버_Wi‑Fi_IP>` 는 접속 불가
+- [ ] 맥에서 `ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]` 로 접속 가능
+- [ ] 맥에서 `ssh [내 서버 사용자명]@[서버 Wi-Fi/LAN IP 주소]` 는 접속 불가
 - [ ] UFW incoming default deny
 - [ ] 포트 22는 **내 맥의 Tailscale IP만** 허용
 - [ ] 비밀번호 SSH 로그인 비활성화
@@ -467,8 +467,8 @@ sudo systemctl status ssh --no-pager
 ```bash
 tailscale ip -4
 ls -l ~/.ssh/id_ed25519 ~/.ssh/id_ed25519.pub
-cat ~/.ssh/id_ed25519.pub | ssh jaehong@<서버_Tailscale_IP> 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
-ssh jaehong@<서버_Tailscale_IP>
+cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP 주소] 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 ```
 
 ## 서버에서
@@ -479,7 +479,7 @@ sudo apt install -y ufw
 
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw allow proto tcp from <맥_Tailscale_IP> to any port 22
+sudo ufw allow proto tcp from [내 맥 Tailscale IP 주소] to any port 22
 sudo ufw status numbered
 sudo ufw enable
 sudo ufw reload
@@ -487,7 +487,7 @@ sudo ufw status verbose
 
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak.$(date +%F-%H%M%S)
 
-sudo tee /etc/ssh/sshd_config.d/99-zenai-hardening.conf >/dev/null <<'EOF'
+sudo tee /etc/ssh/sshd_config.d/99-ssh-hardening.conf >/dev/null <<'EOF'
 PubkeyAuthentication yes
 PasswordAuthentication no
 KbdInteractiveAuthentication no

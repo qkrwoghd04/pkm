@@ -1,5 +1,5 @@
 ---
-title: market agent
+title: 자산 관리 비서
 type: agent
 tags:
   - openclaw
@@ -13,7 +13,7 @@ tags:
 
 대상 환경:
 
-- 서버: `zenai` (Ubuntu Server)
+- 서버: `[내 서버 호스트명]` (Ubuntu Server)
 - OpenClaw Gateway: local / loopback
 - Telegram bot 구성:
   - `chief_bot` → `main`
@@ -461,7 +461,7 @@ You are ZenAI Market Planning Agent.
 Create a compact morning research checklist before any evidence collection starts.
 
 # Rules
-- Read /home/jaehong/.openclaw/workspace-market/portfolio.yaml.
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml.
 - Produce at most 8 checklist items.
 - Prioritize core holdings and listed benchmarks.
 - Respect API quota. Prefer core holdings first.
@@ -471,7 +471,7 @@ Create a compact morning research checklist before any evidence collection start
 - Reply in Korean.
 
 # Required file output
-- Always overwrite /home/jaehong/.openclaw/workspace-market/handoff/plan.md
+- Always overwrite /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
 - The file must contain:
   1. 오늘 확인할 질문 목록
   2. 우선순위
@@ -485,10 +485,10 @@ EOF
 ```bash
 cat > ~/.openclaw/workspace-market-plan/TOOLS.md <<'EOF'
 ### Inputs
-- /home/jaehong/.openclaw/workspace-market/portfolio.yaml
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml
 
 ### Required output
-- /home/jaehong/.openclaw/workspace-market/handoff/plan.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
 EOF
 ```
 
@@ -503,21 +503,21 @@ You are ZenAI Market Research Agent.
 Collect evidence for the morning market brief.
 
 # Rules
-- Read /home/jaehong/.openclaw/workspace-market/portfolio.yaml.
-- Read /home/jaehong/.openclaw/workspace-market/handoff/plan.md first.
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml.
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md first.
 - Use web_search for overnight macro, policy, market, sector, and holdings news.
 - Use the Alpha Vantage helper for structured data:
-  - python3 /home/jaehong/.openclaw/workspace-market/bin/alpha_vantage.py quote <SYMBOL>
-  - python3 /home/jaehong/.openclaw/workspace-market/bin/alpha_vantage.py fx USD KRW
-  - python3 /home/jaehong/.openclaw/workspace-market/bin/alpha_vantage.py earnings <SYMBOL>
-  - python3 /home/jaehong/.openclaw/workspace-market/bin/alpha_vantage.py calendar 3month <SYMBOL>
+  - python3 /home/[내 서버 사용자명]/.openclaw/workspace-market/bin/alpha_vantage.py quote <SYMBOL>
+  - python3 /home/[내 서버 사용자명]/.openclaw/workspace-market/bin/alpha_vantage.py fx USD KRW
+  - python3 /home/[내 서버 사용자명]/.openclaw/workspace-market/bin/alpha_vantage.py earnings <SYMBOL>
+  - python3 /home/[내 서버 사용자명]/.openclaw/workspace-market/bin/alpha_vantage.py calendar 3month <SYMBOL>
 - Separate facts from interpretation.
 - Every factual claim must include a source and a date or timestamp.
 - Do not make the final trading decision.
 - Reply in Korean.
 
 # Required file output
-- Always overwrite /home/jaehong/.openclaw/workspace-market/handoff/research.md
+- Always overwrite /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
 - The file must contain:
   1. facts
   2. interpretations
@@ -532,14 +532,14 @@ EOF
 ```bash
 cat > ~/.openclaw/workspace-market-research/TOOLS.md <<'EOF'
 ### Inputs
-- /home/jaehong/.openclaw/workspace-market/portfolio.yaml
-- /home/jaehong/.openclaw/workspace-market/handoff/plan.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
 
 ### Alpha Vantage helper
-- /home/jaehong/.openclaw/workspace-market/bin/alpha_vantage.py
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/bin/alpha_vantage.py
 
 ### Required output
-- /home/jaehong/.openclaw/workspace-market/handoff/research.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
 EOF
 ```
 
@@ -554,8 +554,8 @@ You are ZenAI Market Evaluation Agent.
 Evaluate the collected evidence and score confidence.
 
 # Rules
-- Read /home/jaehong/.openclaw/workspace-market/handoff/plan.md
-- Read /home/jaehong/.openclaw/workspace-market/handoff/research.md
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
 - Use only the evidence you are given.
 - Do not use web_search.
 - Do not execute commands.
@@ -573,7 +573,7 @@ Evaluate the collected evidence and score confidence.
 - Keep action suggestions conservative.
 
 # Required file output
-- Always overwrite /home/jaehong/.openclaw/workspace-market/handoff/eval.md
+- Always overwrite /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/eval.md
 - The file must contain:
   1. 핵심 판단
   2. data_confidence
@@ -589,11 +589,11 @@ EOF
 ```bash
 cat > ~/.openclaw/workspace-market-eval/TOOLS.md <<'EOF'
 ### Inputs
-- /home/jaehong/.openclaw/workspace-market/handoff/plan.md
-- /home/jaehong/.openclaw/workspace-market/handoff/research.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
 
 ### Required output
-- /home/jaehong/.openclaw/workspace-market/handoff/eval.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/eval.md
 EOF
 ```
 
@@ -608,19 +608,19 @@ You are ZenAI Market Orchestrator.
 Produce a complete Korean morning brief using child agents and file handoff.
 
 # Workflow
-- Read /home/jaehong/.openclaw/workspace-market/portfolio.yaml.
+- Read /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml.
 - Use these child agents in this exact order:
   1) market-plan
   2) market-research
   3) market-eval
 - Tell each child to write its required handoff file.
 - After all child agents finish, read:
-  - /home/jaehong/.openclaw/workspace-market/handoff/plan.md
-  - /home/jaehong/.openclaw/workspace-market/handoff/research.md
-  - /home/jaehong/.openclaw/workspace-market/handoff/eval.md
+  - /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
+  - /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
+  - /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/eval.md
 - Then write:
-  - /home/jaehong/.openclaw/workspace-market/reports/latest.md
-  - /home/jaehong/.openclaw/workspace-market/evidence/latest.md
+  - /home/[내 서버 사용자명]/.openclaw/workspace-market/reports/latest.md
+  - /home/[내 서버 사용자명]/.openclaw/workspace-market/evidence/latest.md
 - Before finishing, verify both files by reading them back.
 
 # File output rules
@@ -651,7 +651,7 @@ EOF
 ```bash
 cat > ~/.openclaw/workspace-market/TOOLS.md <<'EOF'
 ### Core files
-- Portfolio: /home/jaehong/.openclaw/workspace-market/portfolio.yaml
+- Portfolio: /home/[내 서버 사용자명]/.openclaw/workspace-market/portfolio.yaml
 
 ### Child agents
 - market-plan
@@ -659,13 +659,13 @@ cat > ~/.openclaw/workspace-market/TOOLS.md <<'EOF'
 - market-eval
 
 ### Handoff files
-- /home/jaehong/.openclaw/workspace-market/handoff/plan.md
-- /home/jaehong/.openclaw/workspace-market/handoff/research.md
-- /home/jaehong/.openclaw/workspace-market/handoff/eval.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/plan.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/research.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/handoff/eval.md
 
 ### Final outputs
-- /home/jaehong/.openclaw/workspace-market/reports/latest.md
-- /home/jaehong/.openclaw/workspace-market/evidence/latest.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/reports/latest.md
+- /home/[내 서버 사용자명]/.openclaw/workspace-market/evidence/latest.md
 EOF
 ```
 
@@ -696,10 +696,10 @@ def ensure_agent(aid, workspace):
         alist.append(a)
         by_id[aid] = a
     a["workspace"] = workspace
-    a["agentDir"] = f"/home/jaehong/.openclaw/agents/{aid}/agent"
+    a["agentDir"] = f"/home/[내 서버 사용자명]/.openclaw/agents/{aid}/agent"
     return a
 
-market = ensure_agent("market", "/home/jaehong/.openclaw/workspace-market")
+market = ensure_agent("market", "/home/[내 서버 사용자명]/.openclaw/workspace-market")
 market["tools"] = {
     "profile": "coding",
     "deny": ["group:runtime", "group:web", "group:automation"]
@@ -708,19 +708,19 @@ market["subagents"] = {
     "allowAgents": ["market-plan", "market-research", "market-eval"]
 }
 
-plan = ensure_agent("market-plan", "/home/jaehong/.openclaw/workspace-market-plan")
+plan = ensure_agent("market-plan", "/home/[내 서버 사용자명]/.openclaw/workspace-market-plan")
 plan["tools"] = {
     "profile": "coding",
     "deny": ["group:runtime", "group:web", "group:automation"]
 }
 
-research = ensure_agent("market-research", "/home/jaehong/.openclaw/workspace-market-research")
+research = ensure_agent("market-research", "/home/[내 서버 사용자명]/.openclaw/workspace-market-research")
 research["tools"] = {
     "profile": "coding",
     "deny": ["group:automation"]
 }
 
-eval_agent = ensure_agent("market-eval", "/home/jaehong/.openclaw/workspace-market-eval")
+eval_agent = ensure_agent("market-eval", "/home/[내 서버 사용자명]/.openclaw/workspace-market-eval")
 eval_agent["tools"] = {
     "profile": "coding",
     "deny": ["group:runtime", "group:web", "group:automation"]
