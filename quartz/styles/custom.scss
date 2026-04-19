@@ -1,3 +1,158 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+/* =========================
+   1) Palette tokens
+   ========================= */
+
+:root {
+  /* surfaces */
+  --surface-page: #15110f;
+  --surface-card: #1d1714;
+  --surface-soft: #241d19;
+
+  /* text */
+  --text-strong: #f2e9df;
+  --text-muted: #b8a595;
+
+  /* lines */
+  --line-subtle: #4a392f;
+  --line-strong: #6a5243;
+
+  /* brand brown */
+  --accent-brand: #b07a52;
+  --accent-brand-border: #7d5739;
+
+  /* optional accents */
+  --accent-sage: #7b8b67;
+  --accent-sage-border: #596549;
+
+  --accent-amber: #c09257;
+  --accent-amber-border: #8a6537;
+
+  --accent-rust: #b06b5b;
+  --accent-rust-border: #7d483f;
+}
+
+/* 라이트 모드도 쓸 거면 나중에 추가 */
+:root[saved-theme="light"] {
+  --surface-page: #f8f4ef;
+  --surface-card: #fffaf5;
+  --surface-soft: #f1e6da;
+
+  --text-strong: #2f241d;
+  --text-muted: #6f5d4f;
+
+  --line-subtle: #d8c7b5;
+  --line-strong: #b89d86;
+
+  --accent-brand: #8f603d;
+  --accent-brand-border: #b78a67;
+
+  --accent-sage: #71805f;
+  --accent-sage-border: #94a284;
+
+  --accent-amber: #a97941;
+  --accent-amber-border: #c79c6a;
+
+  --accent-rust: #9a5a47;
+  --accent-rust-border: #bf8778;
+}
+
+/* =========================
+   2) Semantic tokens
+   ========================= */
+
+:root {
+  --tone-brand: var(--accent-brand);
+  --tone-brand-border: var(--accent-brand-border);
+
+  --tone-positive: var(--accent-sage);
+  --tone-positive-border: var(--accent-sage-border);
+
+  --tone-warning: var(--accent-amber);
+  --tone-warning-border: var(--accent-amber-border);
+
+  --tone-danger: var(--accent-rust);
+  --tone-danger-border: var(--accent-rust-border);
+}
+
+/* =========================
+   3) Callout mapping
+   ========================= */
+
+.callout {
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+/* 기본값 */
+.callout[data-callout] {
+  --color: var(--tone-brand);
+  --border: var(--tone-brand-border);
+  --bg: transparent;
+}
+
+/* 브랜드 브라운 계열 */
+.callout[data-callout="info"],
+.callout[data-callout="todo"],
+.callout[data-callout="abstract"],
+.callout[data-callout="quote"],
+.callout[data-callout="example"] {
+  --color: var(--tone-brand);
+  --border: var(--tone-brand-border);
+  --bg: transparent;
+}
+
+/* 성공/팁 */
+.callout[data-callout="tip"],
+.callout[data-callout="success"] {
+  --color: var(--tone-positive);
+  --border: var(--tone-positive-border);
+  --bg: transparent;
+}
+
+/* 질문/경고 */
+.callout[data-callout="question"],
+.callout[data-callout="warning"] {
+  --color: var(--tone-warning);
+  --border: var(--tone-warning-border);
+  --bg: transparent;
+}
+
+/* 실패/위험/버그 */
+.callout[data-callout="failure"],
+.callout[data-callout="danger"],
+.callout[data-callout="bug"] {
+  --color: var(--tone-danger);
+  --border: var(--tone-danger-border);
+  --bg: transparent;
+}
+
+/* =========================
+   4) Text / title refinement
+   ========================= */
+
+.callout {
+  border: 1px solid var(--border);
+}
+
+.callout .callout-title {
+  color: var(--color);
+}
+
+.callout .callout-title .callout-title-inner > p {
+  color: var(--color);
+  letter-spacing: 0.04em;
+}
+
+.callout .callout-content,
+.callout .callout-content p,
+.callout .callout-content li {
+  color: var(--text-strong);
+}
+
+.callout .callout-content a {
+  color: var(--accent-brand);
+}
