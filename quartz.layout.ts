@@ -6,7 +6,7 @@ import { explorerSort } from "./quartz/util/sort"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [Component.TagWheelScroll()],
   footer: Component.Footer(),
 }
 
