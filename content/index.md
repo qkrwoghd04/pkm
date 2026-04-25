@@ -10,8 +10,7 @@ This space is where I collect and organize my notes on software engineering, pro
 Here, I write about:
 
 - agent systems and automation
-- frontend and backend engineering
-- deployment and infrastructure
+- frontend engineering
 - experiments, ideas, and technical notes
 
 This repository is both a personal knowledge base and a working archive of things I build, learn, and improve over time.

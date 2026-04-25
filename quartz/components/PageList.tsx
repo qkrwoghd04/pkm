@@ -83,18 +83,20 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
                   </a>
                 </h3>
               </div>
-              <ul class="tags">
-                {tags.map((tag) => (
-                  <li>
-                    <a
-                      class="internal tag-link"
-                      href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
-                    >
-                      {tag}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <div className="tags-scroll">
+                <ul class="tags">
+                  {tags.map((tag) => (
+                    <li>
+                      <a
+                        class="internal tag-link"
+                        href={resolveRelative(fileData.slug!, `tags/${tag}` as FullSlug)}
+                      >
+                        {tag}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </li>
         )
@@ -108,7 +110,64 @@ PageList.css = `
   margin: 0;
 }
 
-.section > .tags {
+.section > .meta {
+  display: inline-block;
+  width: max-content;
+  white-space: nowrap;
+}
+
+.section > .tags-scroll {
+  position: relative;
+  width: 18rem;
+  max-width: 18rem;
+  overflow: hidden;
+}
+
+.section > .tags-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 2rem;
+  height: 100%;
+
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--light)
+  );
+}
+
+.section > .tags-scroll .tags {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+
   margin: 0;
+  list-style: none;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.section > .tags-scroll .tags::-webkit-scrollbar {
+  display: none;
+}
+
+.section > .tags-scroll .tags > li {
+  flex: 0 0 auto;
+}
+
+.section > .tags-scroll .tag-link {
+  display: inline-flex;
+  width: max-content;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
 }
 `
