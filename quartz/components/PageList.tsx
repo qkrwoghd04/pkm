@@ -83,7 +83,7 @@ export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort
                   </a>
                 </h3>
               </div>
-              <div className="tags-scroll">
+              <div class="tags-scroll">
                 <ul class="tags">
                   {tags.map((tag) => (
                     <li>
@@ -120,7 +120,9 @@ PageList.css = `
   position: relative;
   width: 18rem;
   max-width: 18rem;
+  min-width: 0;
   overflow: hidden;
+  cursor: ew-resize;
 }
 
 .section > .tags-scroll::after {
@@ -128,16 +130,10 @@ PageList.css = `
   position: absolute;
   top: 0;
   right: 0;
-
   width: 2rem;
   height: 100%;
-
   pointer-events: none;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--light)
-  );
+  background: linear-gradient(to right, transparent, var(--light));
 }
 
 .section > .tags-scroll .tags {
@@ -145,14 +141,17 @@ PageList.css = `
   flex-wrap: nowrap;
   gap: 0.35rem;
 
+  width: 100%;
   margin: 0;
+  padding: 0 1.5rem 0 0;
   list-style: none;
 
   overflow-x: auto;
   overflow-y: hidden;
-
   white-space: nowrap;
+
   scrollbar-width: none;
+  overscroll-behavior-inline: contain;
 }
 
 .section > .tags-scroll .tags::-webkit-scrollbar {
@@ -167,7 +166,5 @@ PageList.css = `
   display: inline-flex;
   width: max-content;
   white-space: nowrap;
-  margin: 0;
-  padding: 0.25rem 0.5rem;
 }
 `
