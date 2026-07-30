@@ -1,6 +1,10 @@
 ---
-title: Prerequisites
+title: Market Agent 사전 준비
+description: Market Agent 구성 전에 OpenClaw CLI, Gateway, 검색 provider, Alpha Vantage API 접근을 점검하는 절차.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - setup
@@ -8,9 +12,8 @@ tags:
   - alpha-vantage
 aliases:
   - Market Agent Prerequisites
+  - market-agent/01-prerequisites
 ---
-
-# Prerequisites
 
 Market Agent를 구성하기 전에 OpenClaw CLI, Gateway, 검색 provider, Alpha Vantage API key를 점검한다.
 

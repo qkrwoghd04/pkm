@@ -1,6 +1,13 @@
 ---
-title: Runbook
+title: Calendar Agent 운영 런북
+description: Calendar Agent와 관련 홈서버, Tailscale, OpenClaw, gog를 점검하고 장애를 복구하는 운영 절차.
+status: active
+updated: 2026-07-30
+aliases:
+  - Calendar Agent Runbook
+  - calendar-agent/06-runbook
 tags:
+  - agent/calendar
   - openclaw
   - calendar
   - runbook
@@ -9,8 +16,6 @@ tags:
 created: 2026-04-24
 source: calendar.md
 ---
-
-# Calendar Agent 운영 런북
 
 ## 목적
 
@@ -194,8 +199,8 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 
 ## 관련 노트
 
-- [[01-setup]]
-- [[02-network]]
-- [[03-gateway]]
-- [[04-google-cli]]
-- [[05-integration]]
+- [[../../systems/home-server/setup|Ubuntu 홈서버 초기 구축]]
+- [[../../systems/home-server/networking|SSH와 Tailscale 네트워크 운영]]
+- [[../../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
+- [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]
+- [[architecture|Calendar Agent 구조와 연동]]

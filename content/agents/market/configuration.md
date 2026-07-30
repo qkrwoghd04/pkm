@@ -1,15 +1,18 @@
 ---
-title: OpenClaw Config
+title: Market Agent OpenClaw 설정
+description: openclaw.json에 Market 계열 agent의 workspace, tool policy, subagent 구성을 반영하고 검증하는 방법.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - config
   - json
 aliases:
   - openclaw.json
+  - market-agent/06-openclaw-config
 ---
-
-# OpenClaw Config
 
 `openclaw.json`에 market 계열 agent의 workspace, agentDir, tool policy, subagent 설정을 반영한다.
 

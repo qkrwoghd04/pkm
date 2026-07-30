@@ -1,6 +1,13 @@
 ---
-title: Integration
+title: Calendar Agent 구조와 연동
+description: OpenClaw Calendar Agent가 systemd 환경에서 gog CLI를 사용해 Google Calendar 작업을 수행하도록 연결하는 방법.
+status: active
+updated: 2026-07-30
+aliases:
+  - Calendar Agent Integration
+  - calendar-agent/05-integration
 tags:
+  - agent/calendar
   - openclaw
   - calendar-agent
   - gog
@@ -9,8 +16,6 @@ tags:
 created: 2026-04-24
 source: calendar.md
 ---
-
-# OpenClaw Calendar Agent와 gog 연동
 
 ## 목적
 
@@ -117,6 +122,6 @@ openclaw gateway probe
 
 ## 관련 노트
 
-- [[03-gateway]]
-- [[04-google-cli]]
-- [[06-runbook]]
+- [[../../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
+- [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]
+- [[runbook|Calendar Agent 운영 런북]]

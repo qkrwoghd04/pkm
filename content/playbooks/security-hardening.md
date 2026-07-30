@@ -1,12 +1,18 @@
 ---
-title: 서버 보안
+title: Ubuntu Server 보안 하드닝
+description: Tailscale, SSH 공개키 인증, UFW, OpenClaw loopback을 이용해 Ubuntu 홈서버의 원격 접근을 제한하는 절차.
+status: active
+updated: 2026-07-30
+aliases:
+  - 서버 보안
+  - Ubuntu Server 기본 보안 설정 정리
+  - playbook/security-setting
 tags:
+  - playbook/security
   - security
   - server
   - ssh
 ---
-
-# Ubuntu Server 기본 보안 설정 정리
 
 이 문서는 이번 세션에서 진행한 **기본 보안 설정**을 처음부터 다시 따라갈 수 있도록 정리한 문서다.
 
@@ -24,7 +30,7 @@ tags:
 
 ---
 
-# 1. 보안 목표
+## 1. 보안 목표
 
 현재 권장 구조는 아래와 같다.
 
@@ -51,7 +57,7 @@ Ubuntu Server
 
 ---
 
-# 2. 작업 전 주의사항
+## 2. 작업 전 주의사항
 
 중요:
 
@@ -64,9 +70,9 @@ Ubuntu Server
 
 ---
 
-# 3. Tailscale IP 확인
+## 3. Tailscale IP 확인
 
-## 3-1. 맥에서 Tailscale IP 확인
+### 3-1. 맥에서 Tailscale IP 확인
 
 맥에서 실행:
 
@@ -74,7 +80,7 @@ Ubuntu Server
 tailscale ip -4
 ```
 
-## 3-2. 서버에서 Tailscale IP 확인
+### 3-2. 서버에서 Tailscale IP 확인
 
 서버에서 실행:
 
@@ -91,7 +97,7 @@ tailscale ip -4
 
 ---
 
-# 4. 맥의 SSH 키 확인
+## 4. 맥의 SSH 키 확인
 
 맥에서 실행:
 
@@ -119,7 +125,7 @@ cat ~/.ssh/id_ed25519.pub
 ssh-keygen -lf ~/.ssh/id_ed25519.pub
 ```
 
-## 4-1. SSH 키가 없을 경우만 생성
+### 4-1. SSH 키가 없을 경우만 생성
 
 맥에서 실행:
 
@@ -129,7 +135,7 @@ ssh-keygen -t ed25519 -a 64 -C "[내 맥 SSH 키 주석]"
 
 ---
 
-# 5. 공개키를 서버에 등록
+## 5. 공개키를 서버에 등록
 
 맥에서 실행:
 
@@ -143,7 +149,7 @@ cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP �
 cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP 주소] 'umask 077; mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 ```
 
-## 5-1. 서버에 등록됐는지 확인
+### 5-1. 서버에 등록됐는지 확인
 
 서버에서 실행:
 
@@ -153,7 +159,7 @@ cat ~/.ssh/authorized_keys
 
 ---
 
-# 6. 공개키 로그인 테스트
+## 6. 공개키 로그인 테스트
 
 맥의 **새 터미널**에서 실행:
 
@@ -165,9 +171,9 @@ ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 
 ---
 
-# 7. UFW 설치 및 기본 정책 설정
+## 7. UFW 설치 및 기본 정책 설정
 
-## 7-1. UFW 상태 확인
+### 7-1. UFW 상태 확인
 
 서버에서 실행:
 
@@ -182,7 +188,7 @@ sudo apt update
 sudo apt install -y ufw
 ```
 
-## 7-2. 기본 정책 설정
+### 7-2. 기본 정책 설정
 
 서버에서 실행:
 
@@ -193,7 +199,7 @@ sudo ufw default allow outgoing
 
 ---
 
-# 8. 내 맥의 Tailscale IP만 SSH 허용
+## 8. 내 맥의 Tailscale IP만 SSH 허용
 
 서버에서 실행:
 
@@ -211,7 +217,7 @@ sudo ufw allow proto tcp from [내 맥 Tailscale IP 주소] to any port 22
 
 ---
 
-# 9. 넓게 열린 기존 SSH 규칙 제거
+## 9. 넓게 열린 기존 SSH 규칙 제거
 
 현재 규칙 확인:
 
@@ -241,7 +247,7 @@ sudo ufw delete 2
 
 ---
 
-# 10. UFW 활성화
+## 10. UFW 활성화
 
 서버에서 실행:
 
@@ -253,9 +259,9 @@ sudo ufw status verbose
 
 ---
 
-# 11. 방화벽 테스트
+## 11. 방화벽 테스트
 
-## 11-1. 맥에서 Tailscale IP로 SSH 접속 테스트
+### 11-1. 맥에서 Tailscale IP로 SSH 접속 테스트
 
 맥의 새 터미널에서:
 
@@ -265,7 +271,7 @@ ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 
 정상 접속돼야 한다.
 
-## 11-2. 맥에서 서버의 Wi‑Fi/LAN IP로 SSH 시도
+### 11-2. 맥에서 서버의 Wi‑Fi/LAN IP로 SSH 시도
 
 예시:
 
@@ -284,11 +290,11 @@ ssh [내 서버 사용자명]@[서버 Wi-Fi/LAN IP 주소]
 
 ---
 
-# 12. SSH 하드닝
+## 12. SSH 하드닝
 
 이 단계는 **공개키 로그인과 UFW 테스트가 성공한 뒤에만** 진행한다.
 
-## 12-1. 설정 백업
+### 12-1. 설정 백업
 
 서버에서 실행:
 
@@ -296,7 +302,7 @@ ssh [내 서버 사용자명]@[서버 Wi-Fi/LAN IP 주소]
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak.$(date +%F-%H%M%S)
 ```
 
-## 12-2. 추가 설정 파일 생성
+### 12-2. 추가 설정 파일 생성
 
 서버에서 실행:
 
@@ -326,7 +332,7 @@ EOF
 - `MaxAuthTries 3`
   - 인증 시도 횟수 축소
 
-## 12-3. 문법 검사
+### 12-3. 문법 검사
 
 서버에서 실행:
 
@@ -336,7 +342,7 @@ sudo sshd -t
 
 출력이 없으면 정상이다.
 
-## 12-4. SSH 재시작
+### 12-4. SSH 재시작
 
 서버에서 실행:
 
@@ -345,7 +351,7 @@ sudo systemctl restart ssh
 sudo systemctl status ssh --no-pager
 ```
 
-## 12-5. 다시 로그인 테스트
+### 12-5. 다시 로그인 테스트
 
 맥의 **새 터미널**에서:
 
@@ -359,7 +365,7 @@ ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 
 ---
 
-# 13. OpenClaw 관련 보안 정리
+## 13. OpenClaw 관련 보안 정리
 
 OpenClaw는 현재 loopback 바인딩 유지가 기본 권장 상태다.
 
@@ -376,18 +382,18 @@ OpenClaw는 현재 loopback 바인딩 유지가 기본 권장 상태다.
 
 ---
 
-# 14. 왜 이 설정을 하는가
+## 14. 왜 이 설정을 하는가
 
 핵심 이유는 아래와 같다.
 
-## 14-1. 방화벽(UFW)
+### 14-1. 방화벽(UFW)
 
 누가 문 앞까지 올 수 있는지 제한
 
 - 내 맥의 Tailscale IP만 포트 22 허용
 - 같은 Wi‑Fi/LAN의 다른 장비는 SSH 접근 불가
 
-## 14-2. SSH 하드닝
+### 14-2. SSH 하드닝
 
 문 앞에 온 사람 중 누가 실제로 들어올 수 있는지 제한
 
@@ -402,9 +408,9 @@ OpenClaw는 현재 loopback 바인딩 유지가 기본 권장 상태다.
 
 ---
 
-# 15. 트러블슈팅
+## 15. 트러블슈팅
 
-## 15-1. `xterm-ghostty` / `nano` 에러
+### 15-1. `xterm-ghostty` / `nano` 에러
 
 Ghostty 환경에서 서버가 terminfo를 몰라 `nano` 가 안 열릴 수 있다.
 
@@ -420,7 +426,7 @@ export TERM=xterm-256color
 nano ~/.openclaw/.env
 ```
 
-## 15-2. SSH 문법 확인 실패
+### 15-2. SSH 문법 확인 실패
 
 ```bash
 sudo sshd -t
@@ -429,14 +435,14 @@ sudo sshd -t
 여기서 에러가 나면,
 `/etc/ssh/sshd_config.d/99-ssh-hardening.conf` 내용을 다시 점검한다.
 
-## 15-3. UFW 규칙 확인
+### 15-3. UFW 규칙 확인
 
 ```bash
 sudo ufw status numbered
 sudo ufw status verbose
 ```
 
-## 15-4. SSH 서비스 상태 확인
+### 15-4. SSH 서비스 상태 확인
 
 ```bash
 sudo systemctl status ssh --no-pager
@@ -444,7 +450,7 @@ sudo systemctl status ssh --no-pager
 
 ---
 
-# 16. 최종 체크리스트
+## 16. 최종 체크리스트
 
 완료 상태는 아래와 같아야 한다.
 
@@ -459,9 +465,9 @@ sudo systemctl status ssh --no-pager
 
 ---
 
-# 17. 핵심 명령만 다시 요약
+## 17. 핵심 명령만 다시 요약
 
-## 맥에서
+### 맥에서
 
 ```bash
 tailscale ip -4
@@ -470,7 +476,7 @@ cat ~/.ssh/id_ed25519.pub | ssh [내 서버 사용자명]@[서버 Tailscale IP �
 ssh [내 서버 사용자명]@[서버 Tailscale IP 주소]
 ```
 
-## 서버에서
+### 서버에서
 
 ```bash
 sudo apt update
@@ -501,7 +507,7 @@ sudo systemctl status ssh --no-pager
 
 ---
 
-# 18. 다음 단계 제안
+## 18. 다음 단계 제안
 
 지금 단계에서 추가로 고려할 수 있는 것:
 

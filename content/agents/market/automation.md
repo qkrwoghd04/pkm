@@ -1,15 +1,18 @@
 ---
-title: Cron
+title: Market Agent 자동 실행
+description: Market 아침 브리프의 one-shot 검증과 평일 오전 예약 실행을 등록·점검하는 OpenClaw Cron 절차.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - cron
   - telegram
 aliases:
   - Morning Market Brief Cron
+  - market-agent/09-cron
 ---
-
-# Cron
 
 Market Agent의 one-shot 테스트 cron과 정식 아침 브리프 cron을 등록한다.
 

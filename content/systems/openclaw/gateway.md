@@ -1,6 +1,13 @@
 ---
-title: Gateway
+title: OpenClaw Gateway와 Telegram 연결
+description: Ubuntu 홈서버에 OpenClaw Gateway를 설치하고 Telegram bot을 연결·페어링하는 공용 기반 절차.
+status: active
+updated: 2026-07-30
+aliases:
+  - OpenClaw Gateway Telegram 연결
+  - calendar-agent/03-gateway
 tags:
+  - system/openclaw
   - openclaw
   - telegram
   - gateway
@@ -8,8 +15,6 @@ tags:
 created: 2026-04-24
 source: calendar.md
 ---
-
-# OpenClaw Gateway Telegram 연결
 
 ## 목적
 
@@ -149,6 +154,6 @@ OpenClaw가 정상 인식하면 Telegram에서 다음처럼 요청한다.
 
 ## 관련 노트
 
-- [[04-google-cli]]
-- [[05-integration]]
-- [[06-runbook]]
+- [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]
+- [[../../agents/calendar/architecture|Calendar Agent 구조와 연동]]
+- [[../../agents/calendar/runbook|Calendar Agent 운영 런북]]

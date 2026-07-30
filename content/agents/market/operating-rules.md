@@ -1,6 +1,10 @@
 ---
-title: Instructions
+title: Market Agent 운영 지침
+description: Market orchestrator와 plan, research, eval agent에 적용하는 역할, 입력, 출력, 금지사항, 파일 계약.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - agents
@@ -9,9 +13,8 @@ aliases:
   - Market Agent Instructions
   - AGENTS.md
   - TOOLS.md
+  - market-agent/05-instructions
 ---
-
-# Instructions
 
 각 market agent의 `AGENTS.md`와 `TOOLS.md`를 구성한다.
 

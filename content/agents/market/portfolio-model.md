@@ -1,14 +1,17 @@
 ---
-title: Portfolio
+title: Market Agent 포트폴리오 모델
+description: Market Agent가 참조하는 portfolio.yaml의 공개 가능한 필드 구조와 민감한 보유 정보를 분리하는 관리 원칙.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - market
   - portfolio
   - yaml
 aliases:
   - portfolio.yaml
+  - market-agent/03-portfolio
 ---
-
-# Portfolio
 
 `portfolio.yaml`은 Market Agent가 매일 아침 브리프를 만들 때 참조하는
 보유 자산, 벤치마크, watchlist, 해석 메모를 담는다.

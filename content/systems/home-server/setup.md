@@ -1,6 +1,13 @@
 ---
-title: Setup
+title: Ubuntu 홈서버 초기 구축
+description: 개인 비서 에이전트를 운영할 Zenbook에 Ubuntu Server, SSH, 절전 방지, tmux를 설정하는 초기 구축 절차.
+status: active
+updated: 2026-07-30
+aliases:
+  - Zenbook Ubuntu Server 초기 구축
+  - calendar-agent/01-setup
 tags:
+  - system/home-server
   - ubuntu
   - zenbook
   - server
@@ -9,8 +16,6 @@ tags:
 created: 2026-04-24
 source: calendar.md
 ---
-
-# Zenbook Ubuntu Server 초기 구축
 
 ## 목적
 
@@ -149,6 +154,6 @@ tmux attach
 
 ## 관련 노트
 
-- [[02-network]]
-- [[03-gateway]]
-- [[06-runbook]]
+- [[networking|SSH와 Tailscale 네트워크 운영]]
+- [[../openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
+- [[../../agents/calendar/runbook|Calendar Agent 운영 런북]]

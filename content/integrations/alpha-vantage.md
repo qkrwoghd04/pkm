@@ -1,15 +1,18 @@
 ---
 title: Alpha Vantage
+description: Market Agent가 가격, 환율, 실적, 실적 캘린더 데이터를 조회하는 Alpha Vantage helper의 구현과 검증 방법.
+status: active
+updated: 2026-07-30
 tags:
+  - integration/alpha-vantage
   - market
   - alpha-vantage
   - python
   - data
 aliases:
   - Alpha Vantage Helper
+  - market-agent/04-alpha-vantage
 ---
-
-# Alpha Vantage
 
 Alpha Vantage helper script는 Market Agent가 구조화된 가격, 환율, 실적, 실적 캘린더 데이터를 조회하는 데 사용한다.
 

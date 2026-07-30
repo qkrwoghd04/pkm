@@ -1,15 +1,18 @@
 ---
-title: Agents
+title: Market Agent 구조
+description: Market orchestrator와 plan, research, eval child agent의 역할, workspace, handoff 구조를 설명한다.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - agents
   - workspace
 aliases:
   - Market Agents
+  - market-agent/02-agents
 ---
-
-# Agents
 
 Market Agent는 orchestrator인 `market`과 child agent인 `market-plan`, `market-research`, `market-eval`로 구성한다.
 

@@ -1,6 +1,10 @@
 ---
 title: Market Agent
+description: 시장 조사, 평가, 아침 브리프 생성을 역할별 에이전트로 분리해 Telegram으로 전달하는 OpenClaw 시스템의 지식 지도.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - telegram
@@ -8,11 +12,12 @@ tags:
 aliases:
   - 자산 관리 비서
   - OpenClaw Market Agent
+  - market-agent
+  - market-agent/index
 ---
 
-# Market Agent
-
-OpenClaw 기반 개인 자산 관리/시장 브리프 에이전트 구축 기록이다.
+> [!summary]
+> Market Agent는 계획, 조사, 평가, 최종 브리프 생성을 분리하고 결과와 근거를 파일로 보존한다.
 
 ## 목적
 
@@ -60,15 +65,20 @@ cron (08:00 Asia/Seoul)
   -> Telegram market_bot DM 전달
 ```
 
-## Notes
+## Reading path
 
-- [[market-agent/01-prerequisites|Prerequisites]] — OpenClaw PATH, Gateway, Tavily, Alpha Vantage API key
-- [[market-agent/02-agents|Agents]] — market 계열 agent 생성, auth/models 복사, workspace 구조
-- [[market-agent/03-portfolio|Portfolio]] — `portfolio.yaml` 구성
-- [[market-agent/04-alpha-vantage|Alpha Vantage]] — Alpha Vantage helper script와 테스트
-- [[market-agent/05-instructions|Instructions]] — `AGENTS.md`, `TOOLS.md` 지침
-- [[market-agent/06-openclaw-config|OpenClaw Config]] — `openclaw.json` patch
-- [[market-agent/07-telegram|Telegram]] — `market_bot` 라우팅, pairing, chat id 저장
-- [[market-agent/08-testing|Testing]] — 개별 agent 및 orchestrator 테스트
-- [[market-agent/09-cron|Cron]] — one-shot cron, 평일 오전 8시 cron
-- [[market-agent/10-runbook|Runbook]] — 트러블슈팅, 현재 상태, 추후 개선
+1. [[prerequisites|사전 준비]]
+2. [[architecture|구조와 역할]]
+3. [[portfolio-model|포트폴리오 모델]]
+4. [[operating-rules|운영 지침]]
+5. [[configuration|OpenClaw 설정]]
+6. [[telegram|Telegram 연결]]
+7. [[testing|테스트]]
+8. [[automation|자동 실행]]
+9. [[runbook|운영과 복구]]
+
+## Shared systems and integrations
+
+- [[../../systems/openclaw/index|OpenClaw]]
+- [[../../integrations/alpha-vantage|Alpha Vantage]]
+- [[../../playbooks/security-hardening|Ubuntu Server 보안 하드닝]]

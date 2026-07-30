@@ -1,15 +1,18 @@
 ---
-title: Telegram
+title: Market Agent Telegram 연결
+description: Market 전용 Telegram bot을 OpenClaw의 market agent에 라우팅하고 pairing하는 설정 절차.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - telegram
   - bot
 aliases:
   - market_bot
+  - market-agent/07-telegram
 ---
-
-# Telegram
 
 `market_bot`을 Telegram에 연결하고, OpenClaw 라우팅을 `market` agent로 설정한다.
 

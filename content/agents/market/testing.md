@@ -1,14 +1,17 @@
 ---
-title: Testing
+title: Market Agent 테스트
+description: Market의 plan, research, eval child agent와 orchestrator를 개별 검증하는 명령과 통과 기준.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - testing
 aliases:
   - Market Agent Testing
+  - market-agent/08-testing
 ---
-
-# Testing
 
 Market Agent의 child agent와 orchestrator를 개별적으로 테스트한다.
 

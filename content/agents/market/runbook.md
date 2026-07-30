@@ -1,15 +1,18 @@
 ---
-title: Runbook
+title: Market Agent 운영 런북
+description: Market Agent의 CLI, Gateway, Telegram, Cron 장애를 점검하고 복구하는 운영 절차.
+status: active
+updated: 2026-07-30
 tags:
+  - agent/market
   - openclaw
   - market
   - troubleshooting
   - runbook
 aliases:
   - Market Agent Runbook
+  - market-agent/10-runbook
 ---
-
-# Runbook
 
 Market Agent 운영 중 자주 보는 문제, 현재 상태, 추후 개선 항목을 정리한다.
 

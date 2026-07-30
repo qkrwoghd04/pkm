@@ -1,5 +1,12 @@
 ---
 title: Jayden's Knowledge Repo
+description: Agent systems, shared infrastructure, integrations, playbooks, and incident notes from Jayden's projects.
+status: active
+updated: 2026-07-30
+aliases:
+  - Jayden PKM
+tags:
+  - pkm
 ---
 
 Hello, I'm Jayden, a Software Engineer based in South Korea.
@@ -14,6 +21,14 @@ Here, I write about:
 - experiments, ideas, and technical notes
 
 This repository is both a personal knowledge base and a working archive of things I build, learn, and improve over time.
+
+## Knowledge maps
+
+- [[agents/index|Agents]] — 에이전트별 목적, 구조, 동작, 설정, 검증, 운영
+- [[systems/index|Systems]] — 여러 에이전트가 공유하는 서버와 OpenClaw 기반 시스템
+- [[integrations/index|Integrations]] — 외부 서비스, API, CLI 연동
+- [[playbooks/index|Playbooks]] — 반복 실행할 수 있는 보안·운영 절차
+- [[incidents/index|Incidents]] — 장애의 증상, 원인, 해결, 재발 방지
 
 > [!info] I AM DESPERATELY IN NEED OF FRIENDS
 > I think it’s generally good for personal growth to meet new and interesting people.
