@@ -1,6 +1,5 @@
 ---
-title: Calendar Agent
-type: index
+title: Calendar Agent 개요
 tags:
   - openclaw
   - calendar

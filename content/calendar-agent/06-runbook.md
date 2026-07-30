@@ -1,6 +1,5 @@
 ---
 title: Runbook
-type: runbook
 tags:
   - openclaw
   - calendar

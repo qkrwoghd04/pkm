@@ -1,6 +1,5 @@
 ---
 title: Gateway
-type: setup-note
 tags:
   - openclaw
   - telegram

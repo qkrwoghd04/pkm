@@ -1,6 +1,5 @@
 ---
 title: Market Agent
-type: agent
 tags:
   - openclaw
   - market

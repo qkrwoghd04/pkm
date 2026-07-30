@@ -1,6 +1,5 @@
 ---
 title: 서버 보안
-type: playbook
 tags:
   - security
   - server

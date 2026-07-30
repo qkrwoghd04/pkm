@@ -1,6 +1,5 @@
 ---
 title: Google CLI
-type: setup-note
 tags:
   - google-calendar
   - gog

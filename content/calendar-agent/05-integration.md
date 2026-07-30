@@ -1,6 +1,5 @@
 ---
 title: Integration
-type: agent-note
 tags:
   - openclaw
   - calendar-agent

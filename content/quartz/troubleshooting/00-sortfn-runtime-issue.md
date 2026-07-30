@@ -4,7 +4,6 @@ aliases:
   - Quartz Explorer sortFn 이슈
   - Quartz Explorer __name error
   - Quartz Explorer sidebar blank issue
-type: sortfn
 tags:
   - quartz
   - explorer

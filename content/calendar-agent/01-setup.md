@@ -1,6 +1,5 @@
 ---
 title: Setup
-type: setup-note
 tags:
   - ubuntu
   - zenbook

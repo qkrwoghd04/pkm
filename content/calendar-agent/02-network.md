@@ -1,6 +1,5 @@
 ---
-title: Network
-type: ops-note
+title: 네트워크
 tags:
   - ssh
   - tailscale
