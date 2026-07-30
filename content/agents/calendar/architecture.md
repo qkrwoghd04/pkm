@@ -1,6 +1,6 @@
 ---
 title: Calendar Agent 구조와 연동
-description: OpenClaw Calendar Agent가 systemd 환경에서 gog CLI를 사용해 Google Calendar 작업을 수행하도록 연결하는 방법.
+description: OpenClaw Calendar Agent가 systemd 환경에서 gog CLI로 대화형 일정 관리와 읽기 전용 Morning Brief를 수행하는 구조.
 status: active
 updated: 2026-07-30
 aliases:
@@ -17,9 +17,12 @@ created: 2026-04-24
 source: calendar.md
 ---
 
+> [!summary]
+> Calendar Agent는 명시적 사용자 요청을 처리하는 대화형 일정 관리와, Calendar를 변경하지 않는 예약 Morning Brief의 두 실행 모드를 사용한다.
+
 ## 목적
 
-Telegram에서 OpenClaw에게 일정 생성을 요청하면 OpenClaw가 서버의 `gog` CLI를 사용해 Google Calendar 이벤트를 생성하도록 연결한다.
+Telegram에서 OpenClaw에게 일정 작업을 요청하면 `gog` CLI로 Google Calendar에 반영한다. 별도의 예약 실행에서는 같은 agent를 읽기 전용으로 제한해 아침 일정 브리핑을 전달한다.
 
 ## 1. 문제 상황
 
@@ -107,10 +110,13 @@ openclaw gateway probe
 - 기본 캘린더 ID로 생성되는지
 - OpenClaw 응답에 제목, 날짜, 시작/종료 시각, 캘린더명이 포함되는지
 
-## 8. 아직 추가 검증 필요한 부분
+## 8. 현재 검증 상태
 
-- OpenClaw systemd 서비스가 `gog` 환경을 안정적으로 읽는지
-- Telegram → OpenClaw → gog → Google Calendar 생성이 완전히 자동으로 되는지
+- OpenClaw systemd 환경에서 `gog`를 사용하는 Calendar 조회가 동작한다.
+- 실제 Morning Brief Cron 실행 상태가 `ok`임을 확인했다.
+- Calendar Telegram bot으로 브리핑이 전달되는 것을 확인했다.
+- 예약 실행 전후 Calendar 이벤트 해시가 동일해 읽기 전용 동작을 확인했다.
+- 상세 조회·분석·오류 처리 규칙은 [[morning-brief|Calendar Morning Brief]]에서 관리한다.
 
 ## 9. 운영 원칙
 
@@ -119,9 +125,11 @@ openclaw gateway probe
 - 수정/삭제는 명시 요청 없이는 하지 않는다.
 - 기본 타임존은 Asia/Seoul이다.
 - 기본 캘린더 외 쓰기는 명시 승인 후만 허용한다.
+- Morning Brief는 `events`와 `conflicts` 조회만 허용하고 Calendar 쓰기 명령을 금지한다.
 
 ## 관련 노트
 
 - [[../../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
 - [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]
+- [[morning-brief|Calendar Morning Brief]]
 - [[runbook|Calendar Agent 운영 런북]]

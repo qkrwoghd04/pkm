@@ -134,7 +134,33 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 
 - 제목 옵션은 `--title`이 아니라 `--summary`다.
 
-## 8. 현재 상태 요약
+## 8. Morning Brief 점검
+
+Cron과 Telegram 채널 상태를 확인한다.
+
+```bash
+openclaw cron list --all
+openclaw channels status --probe
+```
+
+정상 기준:
+
+- Calendar Morning Brief가 매일 08:00 Asia/Seoul로 등록돼 있다.
+- 최근 실행 상태가 `ok`다.
+- Calendar Telegram 채널이 `works` 상태다.
+- timeout은 90초다.
+- 첫 오류부터 알림을 보내고 반복 알림 cooldown은 6시간이다.
+
+읽기 전용 회귀 점검:
+
+- Cron 선언이 고정 조회 3개만 실행하는지 확인한다.
+- `events`와 `conflicts` 외 Calendar 명령이 없는지 확인한다.
+- `create`, `update`, `delete`, `respond`가 호출되지 않았는지 확인한다.
+- Cron 설정을 변경했다면 실행 전후 Calendar 이벤트 해시를 비교한다.
+
+Cron UUID와 Telegram chat ID는 공개 문서에 기록하지 않는다.
+
+## 9. 현재 상태 요약
 
 현재까지 확실히 된 것:
 
@@ -146,13 +172,18 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 - Google OAuth 완료
 - gog 설치 완료
 - gog로 캘린더 조회 가능
+- OpenClaw systemd 환경에서 Calendar 조회 가능
+- Calendar Morning Brief 실제 Cron 상태 `ok`
+- Calendar Telegram 전달 성공
+- 예약 실행의 읽기 전용 동작 검증 완료
 
-추가 검증이 필요한 것:
+운영 중 계속 확인할 것:
 
-- OpenClaw systemd 서비스가 `gog` 환경을 안정적으로 읽는지
-- Telegram → OpenClaw → gog → Google Calendar 생성이 완전히 자동으로 되는지
+- OAuth와 keyring 인증 상태
+- 최근 Cron 실행 상태와 실패 알림
+- 도구 또는 Cron 선언 변경 후 읽기 전용 회귀 여부
 
-## 9. 처음부터 복구하는 최단 순서
+## 10. 처음부터 복구하는 최단 순서
 
 1. Ubuntu Server 설치
 2. `apt update && apt full-upgrade`
@@ -171,8 +202,11 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 15. `gog calendar create ... --summary ...`
 16. `.openclaw/.env`, `AGENTS.md`, `TOOLS.md` 정리
 17. Gateway 재시작 후 Telegram 테스트
+18. 비공개 백업에서 Morning Brief Cron 선언 복원
+19. Cron과 Calendar Telegram 전달 확인
+20. 실행 전후 Calendar 이벤트 해시 비교
 
-## 10. 빠른 장애 분기
+## 11. 빠른 장애 분기
 
 ### SSH가 안 됨
 
@@ -197,6 +231,14 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 4. `chmod 600 ~/.openclaw/.env`
 5. Gateway 재시작
 
+### Morning Brief가 안 옴
+
+1. `openclaw cron list --all`에서 최근 실행 상태를 확인한다.
+2. `openclaw channels status --probe`에서 Calendar Telegram 상태를 확인한다.
+3. job timeout과 실패 알림 기록을 확인한다.
+4. `events`, `conflicts` 조회가 현재 `gog` 버전에서 동작하는지 확인한다.
+5. 쓰기 명령을 추가하지 않은 상태로 테스트 실행한다.
+
 ## 관련 노트
 
 - [[../../systems/home-server/setup|Ubuntu 홈서버 초기 구축]]
@@ -204,3 +246,4 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
 - [[../../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
 - [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]
 - [[architecture|Calendar Agent 구조와 연동]]
+- [[morning-brief|Calendar Morning Brief]]
