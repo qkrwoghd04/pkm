@@ -7,11 +7,14 @@ This repository contains the public, reviewed PKM published with Quartz.
 - `content/` is the canonical source for public knowledge.
 - Private knowledge belongs outside this repository. Do not recreate `content/private/`.
 - Never publish credentials, tokens, OAuth files, passwords, private keys, personal email addresses, private calendar details, chat IDs, account IDs, or real portfolio values.
+- Never publish internal-only URLs, private issue-tracker links, named internal reviewers, customer records, or source exports unless their release was explicitly approved.
 - Use neutral placeholders for environment-specific values.
 
 ## Information architecture
 
 - `content/agents/`: one agent's purpose, architecture, behavior, configuration, testing, automation, and operations.
+- `content/projects/`: project-specific context, requirements, decisions, incidents, and runbooks. Use `project_id` to connect notes for the same project.
+- `content/patterns/`: reusable engineering knowledge proven useful beyond one project. Create this area only when a cross-project pattern exists.
 - `content/systems/`: shared infrastructure used by more than one agent.
 - `content/integrations/`: external services, APIs, and CLIs.
 - `content/playbooks/`: repeatable procedures that a reader can follow.
@@ -19,6 +22,8 @@ This repository contains the public, reviewed PKM published with Quartz.
 - `content/incidents/`: symptoms, impact, cause, resolution, and prevention for a concrete failure.
 
 Put knowledge in the most reusable scope. Link to shared system or integration notes instead of copying their content into agent notes.
+
+`project_kind` may distinguish work and personal projects for navigation, but it is taxonomy, not an access-control boundary. Only material safe for this public repository belongs in `content/projects/`.
 
 ## File and navigation rules
 

@@ -10,6 +10,17 @@ const contentRoot = path.join(repositoryRoot, "content")
 const ignoredDirectories = new Set([".obsidian", "private", "templates"])
 const requiredFields = ["title", "description", "status", "updated", "tags"]
 const allowedStatuses = new Set(["active", "draft", "deprecated", "resolved"])
+const forbiddenPublicPatterns = [
+  ["internal Outline URL", /https?:\/\/outline\.buttersoft\.dev\b/i],
+  ["internal Linear URL", /https?:\/\/linear\.app\/buttersoft\b/i],
+  ["private-work visibility", /^\s*visibility:\s*private-work\s*$/im],
+  ["internal classification", /^\s*classification:\s*internal\s*$/im],
+  ["private archive reference", /\barchive:\/\/[^\s`)]+/i],
+  ["internal issue key", /\b1QPL-\d+\b/i],
+  ["redaction placeholder", /\[내부 링크 제거\]/],
+  ["internal name alias", /\b[\p{Script=Hangul}]{2,}_[A-Za-z]{2,}\b/u],
+  ["named internal review field", /^\s*[-*]\s*(?:담당|검토|리뷰어)\s*[·:]/im],
+]
 const errors = []
 
 function toPosix(filePath) {
@@ -84,6 +95,7 @@ const notes = markdownFiles.map((absolutePath) => {
     relativePath,
     directory: path.posix.dirname(relativePath),
     slug,
+    source,
     data: parsed.data,
     body: parsed.content,
   }
@@ -162,6 +174,10 @@ for (const note of notes) {
 
   for (const [name, pattern] of secretPatterns) {
     if (pattern.test(note.body)) errors.push(`${label}: possible ${name} found`)
+  }
+
+  for (const [name, pattern] of forbiddenPublicPatterns) {
+    if (pattern.test(note.source)) errors.push(`${label}: ${name} is not allowed in public content`)
   }
 }
 

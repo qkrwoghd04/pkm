@@ -1,8 +1,8 @@
 ---
 title: Jayden's Knowledge Repo
-description: Agent systems, shared infrastructure, integrations, playbooks, and incident notes from Jayden's projects.
+description: Project knowledge, agent systems, shared infrastructure, integrations, playbooks, and incident notes.
 status: active
-updated: 2026-07-30
+updated: 2026-07-31
 aliases:
   - Jayden PKM
 tags:
@@ -17,6 +17,7 @@ This space is where I collect and organize my notes on software engineering, pro
 Here, I write about:
 
 - agent systems and automation
+- project context, requirements, and lessons learned
 - frontend engineering
 - experiments, ideas, and technical notes
 
@@ -24,6 +25,7 @@ This repository is both a personal knowledge base and a working archive of thing
 
 ## Knowledge maps
 
+- [[projects/index|Projects]] — 프로젝트별 맥락, 요구사항, 의사결정, 장애, 운영 지식
 - [[agents/index|Agents]] — 에이전트별 목적, 구조, 동작, 설정, 검증, 운영
 - [[systems/index|Systems]] — 여러 에이전트가 공유하는 서버와 OpenClaw 기반 시스템
 - [[integrations/index|Integrations]] — 외부 서비스, API, CLI 연동
