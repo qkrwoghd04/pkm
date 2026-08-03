@@ -14,7 +14,7 @@ tags:
 ---
 
 > [!summary]
-> Codex는 의미 있는 작업을 검증한 뒤 `$pkm-closeout`으로 최대 세 개의 지식 후보를 제안한다. Closeout은 제안까지만 수행하며, 사용자가 후보를 명시적으로 승인하기 전에는 PKM을 변경하지 않는다.
+> Codex는 의미 있는 작업을 검증한 뒤 `$pkm-closeout`으로 최대 세 개의 지식 후보를 제안한다. 사용자가 특정 후보를 명시적으로 승인하면 별도 create-only MCP가 비공개 inbox 후보를 생성한다. 이 승인은 canonical 문서 갱신이나 공개 배포 권한을 포함하지 않는다.
 
 ## Purpose
 
@@ -47,6 +47,8 @@ Closeout workflow는 작업이 끝나는 시점에 보존 가치가 있는 변�
 4. **Classify:** 후보를 incident, decision, pattern 또는 runbook으로 분류한다.
 5. **Propose:** 보존 가치가 높은 후보만 최대 세 개 제안한다.
 6. **Wait:** 사용자가 후보를 명시적으로 승인할 때까지 어떤 PKM도 수정하지 않는다.
+7. **Capture:** 승인된 후보만 `jayden-pkm-capture`를 통해 비공개 `inbox/closeouts`에 생성한다.
+8. **Curate:** 나중에 사람이 후보를 검토해 기존 문서 병합, 비공개 보존 또는 공개 반영을 결정한다.
 
 MCP를 사용할 수 없으면 작업 종료를 막지 않는다. 이 경우 후보의 중복 검사 상태를 `확인 불가`로 표시한다.
 
@@ -90,15 +92,26 @@ MCP를 사용할 수 없으면 작업 종료를 막지 않는다. 이 경우 후
 
 저장 승인과 공개 승인은 서로 다르다. 비공개 후보 저장을 승인해도 공개 Quartz 게시까지 승인한 것으로 보지 않는다. 저장 단계에서도 개인정보, 자격증명, 내부 URL, 고객 기록과 비공개 issue 식별자를 다시 검사한다.
 
+승인된 후보는 다음 안전 경계를 거친다.
+
+- 읽기 전용 `jayden-pkm`과 분리된 `jayden-pkm-capture`만 사용한다.
+- 호출자가 파일 경로를 정하지 못하며 목적지는 비공개 `inbox/closeouts`로 고정된다.
+- 같은 내용은 fingerprint로 판별해 새 파일을 중복 생성하지 않는다.
+- 새 파일만 만들 수 있고 기존 문서 수정·삭제·Git commit·Quartz 게시를 수행하지 않는다.
+- 결과는 항상 `status: inbox`, `unverified: true`로 저장한다.
+- 자격증명이나 token으로 의심되는 문자열은 파일을 만들기 전에 거부한다.
+
 ## Codex integration
 
 전역 사용자 Skill은 `~/.codex/skills/pkm-closeout/`에 두고 implicit invocation을 허용한다. 전역 `~/.codex/AGENTS.md`는 완료된 의미 있는 작업의 최종 응답 전에 Skill을 사용하도록 연결한다.
 
-Skill이나 전역 지침을 새로 설치한 뒤에는 새 Codex task에서 적용 여부를 확인한다. 현재 task의 코드와 테스트가 PKM보다 우선하며, closeout은 작업이 검증된 뒤에만 실행한다.
+Skill은 승인 후 `jayden-pkm-capture.create_closeout_candidate`에 승인 문구, 후보 유형, 요약, 보존 이유, 근거와 제안 위치를 전달한다. 새 MCP 또는 Skill 설정을 설치한 뒤에는 새 Codex task에서 적용 여부를 확인한다. 현재 task의 코드와 테스트가 PKM보다 우선하며, closeout은 작업이 검증된 뒤에만 실행한다.
 
 ## Current boundary
 
-현재 `jayden-pkm` MCP는 검색과 원문 읽기만 제공한다. 따라서 closeout은 중복 검색과 후보 제안까지만 자동화하고, 승인 후 실제 저장은 별도의 capture 또는 publishing workflow가 담당한다.
+`jayden-pkm`은 계속 검색과 원문 읽기만 제공한다. 별도 `jayden-pkm-capture`는 승인된 후보를 새 비공개 inbox 파일로 만드는 도구 하나만 제공한다. 생성 직후 MCP catalog는 갱신되지만 OpenClaw 별도 index 반영은 독립 주기에 맡긴다.
+
+비공개 inbox는 10분 주기의 snapshot으로 Git에 보존된다. 후보를 canonical public note로 병합하고 Quartz에 배포하는 작업은 기존 콘텐츠 검증과 명시적 push 승인 절차를 별도로 거친다.
 
 ## Related knowledge
 

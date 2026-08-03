@@ -29,7 +29,8 @@ PKM System은 프로젝트 경험, 설계 결정, 트러블슈팅과 재사용 �
 - Markdown 문서는 지식의 source of truth다.
 - 비공개 원본과 미검증 후보는 공개 `content/` 밖에서 관리한다.
 - Quartz는 승인된 문서를 사람이 탐색하는 공개 레이어다.
-- MCP는 허용된 지식을 AI가 검색하고 읽는 조회 레이어다.
+- 읽기 MCP는 허용된 지식을 AI가 검색하고 읽는 조회 레이어다.
+- 별도 capture MCP는 명시적으로 승인된 closeout 후보만 비공개 inbox에 새로 만드는 생성 전용 레이어다.
 - 현재 프로젝트의 코드, 테스트와 저장소 문서는 과거 PKM보다 우선한다.
 
 ## Related knowledge

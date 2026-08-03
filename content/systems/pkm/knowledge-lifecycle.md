@@ -65,7 +65,7 @@ AI는 새 자료만 요약하기 전에 현재 PKM을 먼저 검색한다. 새 �
 - 개인정보, 자격증명과 내부 전용 정보가 제거되었다.
 - 향후 다시 검색하거나 적용할 지속적인 가치가 있다.
 
-미검증 후보는 inbox 또는 publish-ready 상태로 유지하며 canonical 근거로 사용하지 않는다.
+미검증 후보는 inbox 또는 publish-ready 상태로 유지하며 canonical 근거로 사용하지 않는다. Closeout 후보는 명시적 승인 후에만 create-only MCP가 비공개 `inbox/closeouts`에 생성한다.
 
 ### 4. Publish
 
@@ -103,7 +103,7 @@ PKM에 근거가 없거나 오래되었다면 그 사실을 밝히고 현재 저
 - 다른 프로젝트에 재사용할 pattern
 - 변경된 runbook 또는 운영 절차
 
-후보에는 제목, 보존 이유, 대상 위치, 근거 코드·문서와 공개 가능 여부를 포함한다. 사용자 승인 전에는 저장하거나 canonical 문서를 변경하지 않는다.
+후보에는 제목, 보존 이유, 대상 위치, 근거 코드·문서와 공개 가능 여부를 포함한다. 사용자 승인 전에는 저장하거나 canonical 문서를 변경하지 않는다. 승인 후에도 먼저 미검증 비공개 inbox 후보로만 생성하며, 기존 canonical 문서 병합과 공개 배포는 별도 검토와 승인을 요구한다.
 
 Codex의 자동 후보 선정 기준과 승인 경계는 [[closeout-workflow|PKM Closeout Workflow]]에서 관리한다.
 
