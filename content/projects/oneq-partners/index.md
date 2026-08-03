@@ -1,55 +1,70 @@
 ---
 id: projects/oneq-partners
-title: 원큐파트너스 프로젝트
-description: 영업 파트너 QR 유입부터 고객과 공급업체의 최종 견적 합의까지를 지원하는 다자간 견적 중개 SI 프로젝트의 지식 지도.
-knowledge_type: project-map
+title: 원큐파트너스
+description: 영업 파트너, 고객, 운영사, 공급업체를 연결하는 다자간 견적 중개 프로젝트와 담당 경험을 요약한 기록.
+knowledge_type: project
 project_id: oneq-partners
 status: active
-updated: "2026-07-31"
-source_kind: outline-export
-source_snapshot: "2026-07-30"
+updated: "2026-08-03"
 aliases:
   - 원큐파트너스
   - 1QP
   - 1Q 파트너스
+  - projects/oneq-partners/project-overview
+  - projects/oneq-partners/mvp-workflow
 tags:
   - project/oneq-partners
-  - si-project
+  - project-history
   - quotation-brokerage
-  - project-context
-  - requirements
+  - landing-page
+  - astro
 keywords:
   - 원큐파트너스
   - 다자간 견적 중개
   - 영업 파트너 QR
-  - 고객 상담
-  - 공급업체 매칭
-  - 비교 견적
+  - 영업 파트너 랜딩
+  - Astro
+  - React Islands
 project_kind: work
 ---
 
-> 원큐파트너스는 영업 파트너의 QR로 유입된 고객 요청을 운영사가 상담·주선하고, 공급업체 견적 비교와 고객 선택을 거쳐 최종 공급업체·견적 합의까지 연결하는 프로젝트다. 계약 체결과 계약 이후 이행은 V1 범위가 아니다.
+> 원큐파트너스는 영업 파트너가 유입한 고객의 요청을 운영사가 정리하고 여러 공급업체의 견적과 연결하는 다자간 견적 중개 프로젝트다. 이 노트는 세부 요구사항 대신 프로젝트의 성격과 장기적으로 재사용할 경험만 보존한다.
 
-## 먼저 읽을 문서
+## 프로젝트 개요
 
-1. [[project-overview|프로젝트 개요와 범위]]
-2. [[mvp-workflow|MVP 업무 흐름]]
-3. [[requirements-catalog|기능 요구사항 카탈로그]]
-4. [[non-functional-requirements|비기능 요구사항]]
-5. [[open-questions|확인 필요·미결정 사항]]
+원큐파트너스는 다음 참여자를 하나의 견적 흐름으로 연결한다.
 
-## 기준 문서
+- **영업 파트너:** 고객 유입과 제휴 접점
+- **고객:** 상담 신청, 견적 비교, 공급업체 선택
+- **운영사:** 요구사항 정리, 공급업체 주선, 상담과 일정 조율
+- **공급업체:** 방문 또는 온라인 견적 제공
 
-- [[glossary-and-id-system|도메인 용어와 ID 체계]]
-- [[collaboration-and-governance|문서 우선순위와 협업 원칙]]
+프로젝트에는 영업 파트너용 랜딩과 포털, 고객 채널, 운영사 어드민, 공급업체 채널처럼 서로 다른 사용자 접점이 포함된다. 세부 범위는 변경될 수 있으므로 현재 구현과 저장소 문서를 우선한다.
 
-## 상세 명세
+## 내가 다룬 영역
 
-- [[requirements/index|요구사항 지도]] — 기능 요구사항 29건과 비기능 요구사항 10건
-- [[scenarios/index|사용자 시나리오]] — 주요 참여자 흐름 6건
+- 공인중개사·부동산 중개업소를 대상으로 한 영업 파트너 모집·신청 랜딩 페이지의 기술 기반과 구현 경계
+- 정적 콘텐츠를 중심으로 한 Astro 페이지 구조
+- 필요한 상호작용만 React island로 분리하는 프런트엔드 경계
+- 검색 엔진과 공유 미리보기를 고려한 문서·메타데이터 기반
+- 모바일과 데스크톱을 함께 고려하는 반응형 웹 기반
 
-모든 상세 명세는 `2026-07-30` 기준 내보내기 스냅샷이다. 상태가 `draft`인 문서는 확정 사실로 취급하지 않는다.
+이 범위는 `1qpartners-LANDING` 저장소에서 확인된 내용이다. 실제 담당 범위와 성과는 프로젝트 진행에 따라 [[career-notes|경력 정리 노트]]에 갱신한다.
 
-## 원본 보존
+## 기술 키워드
 
-정리 전 원본은 별도 보존한다. 정리본과 원본이 충돌하면 최신 승인 요구사항과 이해관계자 결정 기록을 먼저 확인한다.
+- Astro 7
+- React 19
+- TypeScript
+- pnpm
+- Static-first architecture
+- Islands architecture
+- Responsive web
+- SEO와 소셜 공유 메타데이터
+
+## 장기 보존 대상
+
+- [[career-notes|이력서·경력 정리 재료]]
+- [[incidents/index|트러블슈팅과 장애 기록]]
+
+세부 기능 요구사항, 시나리오, 미결정 정책의 스냅샷은 장기 PKM에서 관리하지 않는다. 현재 사실은 코드, 테스트, 프로젝트 저장소 문서가 우선한다.
