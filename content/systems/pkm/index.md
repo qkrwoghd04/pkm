@@ -22,6 +22,7 @@ PKM System은 프로젝트 경험, 설계 결정, 트러블슈팅과 재사용 �
 ## Documents
 
 - [[knowledge-lifecycle|AI-assisted PKM 지식 생명주기]] — 원본 수집부터 검토, 게시, 검색과 유지보수까지의 운영 원칙
+- [[closeout-workflow|PKM Closeout Workflow]] — 완료된 작업에서 보존할 지식 후보를 제안하고 승인받는 방식
 
 ## System boundaries
 

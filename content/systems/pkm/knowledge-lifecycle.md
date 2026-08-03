@@ -105,6 +105,8 @@ PKM에 근거가 없거나 오래되었다면 그 사실을 밝히고 현재 저
 
 후보에는 제목, 보존 이유, 대상 위치, 근거 코드·문서와 공개 가능 여부를 포함한다. 사용자 승인 전에는 저장하거나 canonical 문서를 변경하지 않는다.
 
+Codex의 자동 후보 선정 기준과 승인 경계는 [[closeout-workflow|PKM Closeout Workflow]]에서 관리한다.
+
 ### 7. Lint
 
 정기적으로 다음 상태를 점검한다.
@@ -129,5 +131,6 @@ PKM에 근거가 없거나 오래되었다면 그 사실을 밝히고 현재 저
 ## Related knowledge
 
 - [[index|PKM System]]
+- [[closeout-workflow|PKM Closeout Workflow]]
 - [[../../projects/index|Projects]]
 - [[../../incidents/index|Incidents]]
