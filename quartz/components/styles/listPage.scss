@@ -14,8 +14,20 @@ li.section-li {
     grid-template-columns: fit-content(8em) 3fr 1fr;
 
     @media all and ($mobile) {
-      & > .tags {
-        display: none;
+      gap: 0.4rem;
+      grid-template-columns: minmax(0, 1fr);
+      min-width: 0;
+
+      & > .meta {
+        margin-right: 0;
+      }
+
+      & > .desc,
+      & > .tags-scroll {
+        grid-column: 1;
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
       }
     }
 

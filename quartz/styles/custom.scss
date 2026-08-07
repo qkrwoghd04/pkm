@@ -1,6 +1,12 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// Avoid the classic 100vw + vertical scrollbar overflow on narrow screens.
+html {
+  width: 100%;
+}
+
 /* =========================
    1) Palette tokens
    ========================= */
@@ -155,4 +161,284 @@
 
 .callout .callout-content a {
   color: var(--accent-brand);
+}
+
+/* =========================
+   5) Reading typography
+   ========================= */
+
+.center {
+  min-width: 0;
+
+  .breadcrumb-container {
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+
+    .breadcrumb-element {
+      a,
+      p {
+        color: var(--tertiary);
+        font-weight: 400;
+      }
+
+      p {
+        margin-left: 0.35rem;
+      }
+
+      &:last-child a {
+        color: var(--darkgray);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .article-title {
+    font-size: clamp(2rem, 1.9rem + 0.35vw, 2.25rem);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    margin-top: 1.75rem;
+  }
+
+  .content-meta {
+    color: var(--tertiary);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0.35rem 0 1.5rem;
+  }
+
+  article {
+    font-kerning: normal;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+
+    p,
+    li {
+      line-height: 1.75;
+    }
+
+    li + li {
+      margin-top: 0.25rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      margin-top: 2.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .callout[data-callout="abstract"] {
+      --bg: color-mix(in srgb, var(--tone-brand) 6%, transparent);
+    }
+
+    pre,
+    .table-container {
+      max-width: 100%;
+    }
+
+    :not(pre) > code {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+  }
+}
+
+/* =========================
+   6) Explorer typography
+   ========================= */
+
+.explorer-content ul li > a {
+  font-family: var(--bodyFont);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+}
+
+.explorer-content ul li > a.active {
+  font-weight: 600;
+}
+
+/* =========================
+   7) Table of contents
+   ========================= */
+
+ul.toc-content.overflow > li > a {
+  color: var(--tertiary);
+  font-family: var(--bodyFont);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+  opacity: 1;
+}
+
+ul.toc-content.overflow > li > a.in-view {
+  color: var(--dark);
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* =========================
+   8) Mobile reading layout
+   ========================= */
+
+@media (max-width: 800px) {
+  .page > #quartz-body .sidebar.left {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .page-title {
+    flex: 0 1 auto;
+    font-size: clamp(1.1rem, 5vw, 1.25rem);
+    line-height: 1.2;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sidebar.left > .spacer,
+  .sidebar.left > .flex-component,
+  .sidebar.left > .flex-component > div {
+    min-width: 0;
+  }
+
+  .sidebar.left > .flex-component {
+    flex-shrink: 1;
+    gap: 0.5rem !important;
+  }
+
+  .sidebar.left .search {
+    min-width: 0;
+  }
+
+  .sidebar.left .darkmode,
+  .sidebar.left .readermode {
+    display: grid;
+    height: 2.25rem;
+    place-items: center;
+    width: 2.25rem;
+
+    svg {
+      position: static;
+    }
+  }
+
+  .center {
+    font-size: 0.9375rem;
+
+    .breadcrumb-container,
+    .content-meta {
+      font-size: 0.8125rem;
+    }
+
+    .article-title {
+      font-size: 1.625rem;
+      line-height: 1.3;
+      margin-top: 1.25rem;
+    }
+
+    article {
+      p,
+      li {
+        line-height: 1.7;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+        margin-top: 2rem;
+      }
+
+      h3 {
+        font-size: 1.0625rem;
+        line-height: 1.45;
+        margin-top: 1.5rem;
+      }
+    }
+  }
+
+  .page > #quartz-body .sidebar.right {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 2rem;
+
+    > * {
+      flex: 0 0 auto;
+      max-height: none;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .graph > .graph-outer {
+      height: clamp(13rem, 65vw, 15.625rem);
+    }
+
+    .backlinks > ul.overflow {
+      max-height: none;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .sidebar.left .search {
+    flex: 0 0 2.25rem;
+    width: 2.25rem;
+  }
+
+  .sidebar.left .search-button {
+    height: 2.25rem;
+    justify-content: center;
+    padding: 0;
+    width: 2.25rem;
+
+    svg {
+      margin: 0;
+    }
+
+    p {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+  }
+}
+
+@media (max-width: 340px) {
+  .page-title {
+    font-size: 1.05rem;
+  }
+
+  .sidebar.left > .flex-component {
+    gap: 0.4rem !important;
+  }
+
+  .sidebar.left .search {
+    flex-basis: 2rem;
+    width: 2rem;
+  }
+
+  .sidebar.left .search-button,
+  .sidebar.left .darkmode,
+  .sidebar.left .readermode {
+    height: 2rem;
+    width: 2rem;
+  }
 }

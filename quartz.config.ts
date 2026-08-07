@@ -23,7 +23,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Noto Serif KR",
+        title: "Noto Serif KR",
+        header: "Noto Sans KR",
         body: "Noto Sans KR",
         code: "IBM Plex Mono",
       },

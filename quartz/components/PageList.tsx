@@ -117,6 +117,7 @@ PageList.css = `
 }
 
 .section > .tags-scroll {
+  box-sizing: border-box;
   position: relative;
   width: 18rem;
   max-width: 18rem;
@@ -137,6 +138,7 @@ PageList.css = `
 }
 
 .section > .tags-scroll .tags {
+  box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
   gap: 0.35rem;
@@ -166,5 +168,9 @@ PageList.css = `
   display: inline-flex;
   width: max-content;
   white-space: nowrap;
+}
+
+.section > .desc {
+  min-width: 0;
 }
 `

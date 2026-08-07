@@ -1,6 +1,13 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import type { FileTrieNode } from "./quartz/util/fileTrie"
 import { explorerSort } from "./quartz/util/sort"
+
+const explorerDisplayNames = (node: FileTrieNode): void => {
+  if (node.isFolder && node.slug === "projects/oneQ/index") {
+    node.displayName = "oneQ"
+  }
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -28,12 +35,14 @@ export const defaultContentPageLayout: PageLayout = {
         {
           Component: Component.Search(),
           grow: true,
+          shrink: false,
         },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
+        { Component: Component.Darkmode(), shrink: false },
+        { Component: Component.ReaderMode(), shrink: false },
       ],
     }),
     Component.Explorer({
+      mapFn: explorerDisplayNames,
       sortFn: explorerSort,
     }),
   ],
@@ -54,13 +63,16 @@ export const defaultListPageLayout: PageLayout = {
         {
           Component: Component.Search(),
           grow: true,
+          shrink: false,
         },
-        { Component: Component.Darkmode() },
+        { Component: Component.Darkmode(), shrink: false },
+        { Component: Component.ReaderMode(), shrink: false },
       ],
     }),
     Component.Explorer({
+      mapFn: explorerDisplayNames,
       sortFn: explorerSort,
     }),
   ],
-  right: [],
+  right: [Component.DesktopOnly(Component.TableOfContents())],
 }
