@@ -2,7 +2,7 @@
 title: Integrations
 description: 에이전트가 사용하는 외부 서비스, API, CLI의 설정과 검증 문서를 연결하는 지식 지도.
 status: active
-updated: 2026-07-30
+updated: 2026-08-07
 aliases:
   - 외부 연동
 tags:
@@ -17,6 +17,7 @@ tags:
 
 - [[google-calendar-gog|Google Calendar와 gog CLI 연동]]
 - [[alpha-vantage|Alpha Vantage 연동]]
+- [[outline-mcp|Outline MCP 읽기 전용 연결]]
 
 ## Related knowledge
 
