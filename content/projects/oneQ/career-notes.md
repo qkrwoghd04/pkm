@@ -6,10 +6,11 @@ knowledge_type: career-notes
 project_id: oneq-partners
 project_kind: work
 status: draft
-updated: "2026-08-06"
+updated: "2026-08-07"
 aliases:
   - 원큐파트너스 이력서
   - 1QP 경력 기술
+  - projects/oneq-partners/career-notes
 tags:
   - project/oneq-partners
   - career
@@ -95,4 +96,4 @@ tags:
 ## 관련 문서
 
 - [[index|원큐파트너스 프로젝트 개요]]
-- [[incidents/index|트러블슈팅 기록]]
+- [[troubleshooting|트러블슈팅 기록]]

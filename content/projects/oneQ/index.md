@@ -5,11 +5,12 @@ description: 영업 파트너, 고객, 운영사, 공급업체를 연결하는 �
 knowledge_type: project
 project_id: oneq-partners
 status: active
-updated: "2026-08-06"
+updated: "2026-08-07"
 aliases:
   - 원큐파트너스
   - 1QP
   - 1Q 파트너스
+  - projects/oneq-partners
   - 프로젝트 개요 및 범위
   - projects/oneq-partners/project-overview
   - projects/oneq-partners/mvp-workflow
@@ -148,11 +149,11 @@ project_kind: work
 - 고객용 카테고리 그리드와 공급업체용 견적 리스트를 역할별로 분리한 판단
 - 모바일 채널을 고정 폭으로 제한하고 운영사 백오피스만 PC에 최적화한 판단
 - 고객과 공급업체의 상태 변화를 알림으로 연결한 과정
-- 구현 중 발생한 기술 문제와 해결·검증 과정을 [[incidents/index|트러블슈팅 기록]]으로 보존
+- 구현 중 발생한 기술 문제와 해결·검증 과정을 [[troubleshooting|트러블슈팅 기록]]으로 보존
 
 ## 장기 보존 대상
 
 - [[career-notes|이력서·경력 정리 재료]]
-- [[incidents/index|트러블슈팅과 장애 기록]]
+- [[troubleshooting|트러블슈팅과 장애 기록]]
 
 세부 기능 요구사항, 시나리오, 미결정 정책의 스냅샷은 장기 PKM에서 관리하지 않는다. 현재 사실은 코드, 테스트, 프로젝트 저장소 문서가 우선한다.

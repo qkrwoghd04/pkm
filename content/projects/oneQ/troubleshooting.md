@@ -6,7 +6,10 @@ knowledge_type: incident-map
 project_id: oneq-partners
 project_kind: work
 status: active
-updated: "2026-08-03"
+updated: "2026-08-07"
+aliases:
+  - 원큐파트너스 장애 기록
+  - projects/oneq-partners/incidents
 tags:
   - project/oneq-partners
   - incident
@@ -28,10 +31,11 @@ tags:
 
 ## 파일 규칙
 
-- 위치: `projects/oneq-partners/incidents/`
-- 파일명: 증상이나 원인을 표현하는 semantic kebab-case
+- 위치: `projects/oneQ/`
+- 파일명: `incident-<semantic-kebab-case>.md`
 - 상태: 해결된 사건은 `resolved`, 조사 중이면 `draft`
 - 한 문서는 하나의 사건만 다룬다.
+- 결정과 runbook도 하위 폴더를 만들지 않고 각각 `decision-*`, `runbook-*` 접두사로 같은 위치에서 관리한다.
 
 ## Incident 템플릿
 
@@ -84,5 +88,5 @@ tags:
 
 ## 관련 문서
 
-- [[../index|원큐파트너스 프로젝트 개요]]
-- [[../career-notes|이력서·경력 정리 재료]]
+- [[index|원큐파트너스 프로젝트 개요]]
+- [[career-notes|이력서·경력 정리 재료]]

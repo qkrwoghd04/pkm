@@ -2,7 +2,7 @@
 title: Projects
 description: "업무와 개인 프로젝트에서 축적한 구조, 요구사항, 결정, 장애 해결 지식을 프로젝트별로 탐색하는 지도."
 status: active
-updated: "2026-08-03"
+updated: "2026-08-07"
 tags:
   - projects
   - pkm
@@ -13,7 +13,7 @@ tags:
 
 ## 프로젝트
 
-- [[oneq-partners/index|원큐파트너스]] — 다자간 견적 중개 프로젝트의 개요, 경력 정리, 트러블슈팅 기록
+- [[oneQ/index|원큐파트너스]] — 다자간 견적 중개 프로젝트의 개요, 경력 정리, 트러블슈팅 기록
 
 ## 사용 원칙
 
