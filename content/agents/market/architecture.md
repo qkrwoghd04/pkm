@@ -1,14 +1,15 @@
 ---
+id: agents/market/architecture
+id_aliases:
+  - public/agents/market/architecture
 title: Market Agent 구조
 description: Market orchestrator와 plan, research, eval child agent의 역할, workspace, handoff 구조를 설명한다.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - agents
-  - workspace
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/orchestration
 aliases:
   - Market Agents
   - market-agent/02-agents
@@ -82,9 +83,16 @@ touch ~/.openclaw/workspace-market/evidence/latest.md
 
 ## 역할 요약
 
-| Agent | 역할 | 주요 출력 |
-|---|---|---|
-| `market` | 전체 orchestration | `reports/latest.md`, `evidence/latest.md` |
-| `market-plan` | 아침 리서치 체크리스트 생성 | `handoff/plan.md` |
-| `market-research` | 뉴스/데이터 근거 수집 | `handoff/research.md` |
-| `market-eval` | 근거 기반 신뢰도 평가 | `handoff/eval.md` |
+| Agent             | 역할                        | 주요 출력                                 |
+| ----------------- | --------------------------- | ----------------------------------------- |
+| `market`          | 전체 orchestration          | `reports/latest.md`, `evidence/latest.md` |
+| `market-plan`     | 아침 리서치 체크리스트 생성 | `handoff/plan.md`                         |
+| `market-research` | 뉴스/데이터 근거 수집       | `handoff/research.md`                     |
+| `market-eval`     | 근거 기반 신뢰도 평가       | `handoff/eval.md`                         |
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[operating-rules|운영 지침]]
+- [[configuration|OpenClaw 설정]]
+- [[automation|자동 실행]]

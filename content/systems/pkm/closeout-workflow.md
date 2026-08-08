@@ -1,4 +1,7 @@
 ---
+id: systems/pkm/closeout-workflow
+id_aliases:
+  - public/systems/pkm/closeout-workflow
 title: PKM Closeout Workflow
 description: 완료된 개발 작업에서 장기 보존할 incident·decision·pattern 후보를 자동 제안하는 Codex 운영 방식.
 status: active
@@ -7,10 +10,10 @@ aliases:
   - PKM closeout
   - 지식 후보 제안 흐름
 tags:
-  - system/pkm
-  - knowledge-lifecycle
-  - codex
-  - human-review
+  - domain/knowledge-management
+  - tech/codex
+  - concern/human-review
+  - concern/knowledge-lifecycle
 ---
 
 > [!summary]

@@ -1,4 +1,7 @@
 ---
+id: agents/calendar/runbook
+id_aliases:
+  - public/agents/calendar/runbook
 title: Calendar Agent 운영 런북
 description: Calendar Agent와 관련 홈서버, Tailscale, OpenClaw, gog를 점검하고 장애를 복구하는 운영 절차.
 status: active
@@ -7,12 +10,11 @@ aliases:
   - Calendar Agent Runbook
   - calendar-agent/06-runbook
 tags:
-  - agent/calendar
-  - openclaw
-  - calendar
-  - runbook
-  - recovery
-  - commands
+  - domain/agent-automation
+  - tech/openclaw
+  - tech/google-calendar
+  - concern/operations
+  - concern/recovery
 created: 2026-04-24
 source: calendar.md
 ---
@@ -239,7 +241,7 @@ Cron UUID와 Telegram chat ID는 공개 문서에 기록하지 않는다.
 4. `events`, `conflicts` 조회가 현재 `gog` 버전에서 동작하는지 확인한다.
 5. 쓰기 명령을 추가하지 않은 상태로 테스트 실행한다.
 
-## 관련 노트
+## 관련 문서
 
 - [[../../systems/home-server/setup|Ubuntu 홈서버 초기 구축]]
 - [[../../systems/home-server/networking|SSH와 Tailscale 네트워크 운영]]

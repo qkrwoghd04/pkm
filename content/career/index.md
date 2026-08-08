@@ -1,4 +1,7 @@
 ---
+id: career
+id_aliases:
+  - public/career
 title: Career
 description: 프로젝트 경험을 경력의 언어로 해석하고 업무 원칙과 성장 기록을 연결하는 지식 지도.
 status: active
@@ -6,9 +9,9 @@ updated: 2026-08-07
 aliases:
   - 경력
 tags:
-  - career
-  - professional-growth
-  - reflection
+  - domain/professional-growth
+  - concern/navigation
+  - concern/reflection
 ---
 
 > [!summary]

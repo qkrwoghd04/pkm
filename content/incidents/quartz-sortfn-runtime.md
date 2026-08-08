@@ -1,4 +1,7 @@
 ---
+id: incidents/quartz-sortfn-runtime
+id_aliases:
+  - public/incidents/quartz-sortfn-runtime
 title: Quartz Explorer sortFn 런타임 장애
 description: Quartz Explorer의 커스텀 sortFn 직렬화로 사이드바가 비는 증상의 원인, 해결, 안전한 작성 규칙.
 status: resolved
@@ -9,12 +12,11 @@ aliases:
   - Quartz Explorer sidebar blank issue
   - quartz/troubleshooting/00-sortfn-runtime-issue
 tags:
-  - incident/quartz
-  - quartz
-  - explorer
-  - typescript
-  - pkm
-  - debugging
+  - domain/knowledge-management
+  - tech/quartz
+  - tech/typescript
+  - concern/debugging
+  - concern/incident-response
 created: 2026-04-25
 ---
 
@@ -390,3 +392,9 @@ Quartz Explorer의 커스텀 `sortFn`은 일반적인 앱 코드처럼 작성하
 - [Quartz Explorer 공식 문서](https://quartz.jzhao.xyz/features/explorer)
 - [Quartz Explorer client script](https://raw.githubusercontent.com/jackyzha0/quartz/v4/quartz/components/scripts/explorer.inline.ts)
 - [Quartz FileTrieNode implementation](https://raw.githubusercontent.com/jackyzha0/quartz/v4/quartz/util/fileTrie.ts)
+
+## 관련 문서
+
+- [[index|Incidents]]
+- [[../systems/pkm/index|PKM System]]
+- [[../systems/index|Systems]]

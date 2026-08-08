@@ -1,6 +1,8 @@
 ---
 id: projects/oneq-partners/career-notes
-title: 원큐파트너스 경력 정리 노트
+id_aliases:
+  - public/projects/oneq-partners/career-notes
+title: 경력 정리 노트
 description: 원큐파트너스 경험을 이력서와 포트폴리오에 활용하기 위해 역할, 기여, 기술, 성과 근거를 정리하는 작업 노트.
 knowledge_type: career-notes
 project_id: oneq-partners
@@ -8,14 +10,15 @@ project_kind: work
 status: draft
 updated: "2026-08-07"
 aliases:
+  - 원큐파트너스 경력 정리 노트
   - 원큐파트너스 이력서
   - 1QP 경력 기술
   - projects/oneq-partners/career-notes
 tags:
-  - project/oneq-partners
-  - career
-  - resume
-  - frontend
+  - domain/quotation-brokerage
+  - domain/professional-growth
+  - concern/reflection
+  - concern/project-history
 ---
 
 > [!summary]

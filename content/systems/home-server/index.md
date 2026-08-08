@@ -1,4 +1,7 @@
 ---
+id: systems/home-server
+id_aliases:
+  - public/systems/home-server
 title: Home Server
 description: 개인 비서 에이전트를 운영하는 Ubuntu 홈서버의 구축과 네트워크 문서를 연결하는 지식 지도.
 status: active
@@ -7,9 +10,9 @@ aliases:
   - 홈서버
   - Zenbook Server
 tags:
-  - system/home-server
-  - ubuntu
-  - infrastructure
+  - domain/infrastructure
+  - tech/ubuntu
+  - concern/operations
 ---
 
 > [!summary]

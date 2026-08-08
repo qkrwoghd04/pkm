@@ -1,6 +1,6 @@
 ---
 id: projects/oneq-partners/architecture
-title: 원큐파트너스 프론트엔드 아키텍처
+title: 프론트엔드 아키텍처
 description: oneq-FE의 기술 스택, 6개 앱 경계, pnpm workspace와 초기 검증 체계를 설명한다.
 project_id: oneq-partners
 project_kind: work
@@ -8,6 +8,7 @@ status: active
 updated: "2026-08-08"
 verified_at: "2026-08-08"
 aliases:
+  - 원큐파트너스 프론트엔드 아키텍처
   - 원큐파트너스 프론트엔드 구조
   - oneq-FE architecture
   - projects/oneq-partners/architecture
@@ -53,14 +54,14 @@ oneq-FE/
 
 ## 앱별 기술 스택
 
-| 패키지 | 1차 기술 스택 | 역할 |
-| --- | --- | --- |
-| `@oneq/platform-web` | TanStack Start, TanStack Router, React 19, Vite 8, TypeScript | 플랫폼 웹 |
-| `@oneq/platform-app` | Expo SDK 57, React Native 0.86, React 19, TypeScript | 플랫폼 앱 |
-| `@oneq/provider-web` | TanStack Start, TanStack Router, React 19, Vite 8, TypeScript | 공급업체 웹 |
-| `@oneq/provider-app` | Expo SDK 57, React Native 0.86, React 19, TypeScript | 공급업체 앱 |
-| `@oneq/partner-web` | React 19, Vite 8, TypeScript | 영업 파트너 웹 |
-| `@oneq/admin-web` | React 19, Vite 8, TypeScript | 운영사 웹 |
+| 패키지               | 1차 기술 스택                                                 | 역할           |
+| -------------------- | ------------------------------------------------------------- | -------------- |
+| `@oneq/platform-web` | TanStack Start, TanStack Router, React 19, Vite 8, TypeScript | 플랫폼 웹      |
+| `@oneq/platform-app` | Expo SDK 57, React Native 0.86, React 19, TypeScript          | 플랫폼 앱      |
+| `@oneq/provider-web` | TanStack Start, TanStack Router, React 19, Vite 8, TypeScript | 공급업체 웹    |
+| `@oneq/provider-app` | Expo SDK 57, React Native 0.86, React 19, TypeScript          | 공급업체 앱    |
+| `@oneq/partner-web`  | React 19, Vite 8, TypeScript                                  | 영업 파트너 웹 |
+| `@oneq/admin-web`    | React 19, Vite 8, TypeScript                                  | 운영사 웹      |
 
 플랫폼·공급업체 웹은 TanStack Start 기반으로 시작하고, 파트너·운영사 웹은 React·Vite SPA로 시작한다. 모바일 앱은 Expo SDK와 호환되는 React·React Native 버전을 각 앱에서 명시한다. 웹 앱과 Expo 앱의 React 버전을 루트 override로 강제 통일하지 않는다.
 
@@ -77,12 +78,12 @@ oneq-FE/
 
 모든 앱은 구현 기술이 달라도 가능한 한 같은 스크립트 이름을 사용한다.
 
-| 명령 | 적용 대상 | 의미 |
-| --- | --- | --- |
-| `dev` | 6개 앱 | 앱별 개발 서버 또는 Expo 개발 서버 실행 |
-| `typecheck` | 6개 앱 | TypeScript 정적 검사 |
-| `lint` | 6개 앱 | 루트 Oxlint 설정으로 검사 |
-| `build` | 웹 앱 4개 | 프로덕션 웹 빌드 |
+| 명령        | 적용 대상 | 의미                                    |
+| ----------- | --------- | --------------------------------------- |
+| `dev`       | 6개 앱    | 앱별 개발 서버 또는 Expo 개발 서버 실행 |
+| `typecheck` | 6개 앱    | TypeScript 정적 검사                    |
+| `lint`      | 6개 앱    | 루트 Oxlint 설정으로 검사               |
+| `build`     | 웹 앱 4개 | 프로덕션 웹 빌드                        |
 
 Expo 앱의 스토어 배포는 로컬 `build` 스크립트로 추상화하지 않고 이후 EAS 구성에서 다룬다.
 

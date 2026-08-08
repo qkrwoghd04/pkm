@@ -1,4 +1,7 @@
 ---
+id: integrations
+id_aliases:
+  - public/integrations
 title: Integrations
 description: 에이전트가 사용하는 외부 서비스, API, CLI의 설정과 검증 문서를 연결하는 지식 지도.
 status: active
@@ -6,8 +9,8 @@ updated: 2026-08-07
 aliases:
   - 외부 연동
 tags:
-  - integrations
-  - pkm
+  - domain/integration
+  - concern/navigation
 ---
 
 > [!summary]

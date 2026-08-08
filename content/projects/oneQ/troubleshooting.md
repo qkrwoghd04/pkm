@@ -1,6 +1,8 @@
 ---
 id: projects/oneq-partners/incidents
-title: 원큐파트너스 트러블슈팅
+id_aliases:
+  - public/projects/oneq-partners/troubleshooting
+title: 트러블슈팅
 description: 원큐파트너스에서 해결한 장애와 시행착오를 원인, 해결, 검증, 재사용 가능한 교훈 중심으로 축적하는 지식 지도.
 knowledge_type: incident-map
 project_id: oneq-partners
@@ -8,12 +10,13 @@ project_kind: work
 status: active
 updated: "2026-08-07"
 aliases:
+  - 원큐파트너스 트러블슈팅
   - 원큐파트너스 장애 기록
   - projects/oneq-partners/incidents
 tags:
-  - project/oneq-partners
-  - incident
-  - troubleshooting
+  - domain/quotation-brokerage
+  - concern/debugging
+  - concern/incident-response
 ---
 
 > [!summary]

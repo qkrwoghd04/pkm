@@ -8,8 +8,10 @@ import matter from "gray-matter"
 const repositoryRoot = process.cwd()
 const contentRoot = path.join(repositoryRoot, "content")
 const ignoredDirectories = new Set([".obsidian", "private", "templates"])
-const requiredFields = ["title", "description", "status", "updated", "tags"]
+const requiredFields = ["id", "title", "description", "status", "updated", "tags"]
 const allowedStatuses = new Set(["active", "draft", "deprecated", "resolved"])
+const stableIdPattern = /^[a-z0-9]+(?:[\/_-][a-z0-9]+)*$/
+const allowedTagPattern = /^(?:domain|tech|concern)\/[a-z0-9]+(?:-[a-z0-9]+)*$/
 const forbiddenPublicPatterns = [
   ["internal Outline URL", /https?:\/\/outline\.buttersoft\.dev\b/i],
   ["internal Linear URL", /https?:\/\/linear\.app\/buttersoft\b/i],
@@ -70,12 +72,23 @@ function normalizeHeading(heading) {
 }
 
 function normalizeLinkTarget(target) {
-  return decodeURIComponent(target).replace(/^\/+/, "").replace(/\.md$/i, "").replace(/\/+$/, "")
+  const normalized = decodeURIComponent(target)
+    .replace(/^\/+/, "")
+    .replace(/\.md$/i, "")
+    .replace(/\/+$/, "")
+
+  if (normalized === "index") return ""
+  return normalized.replace(/\/index$/, "")
 }
 
 function isValidUpdated(value) {
   if (value instanceof Date) return !Number.isNaN(value.valueOf())
   return /^\d{4}-\d{2}-\d{2}$/.test(String(value))
+}
+
+function asList(value) {
+  if (value == null) return []
+  return Array.isArray(value) ? value : [value]
 }
 
 if (!fs.existsSync(contentRoot)) {
@@ -88,7 +101,8 @@ const notes = markdownFiles.map((absolutePath) => {
   const source = fs.readFileSync(absolutePath, "utf8")
   const parsed = matter(source)
   const relativePath = toPosix(path.relative(contentRoot, absolutePath))
-  const slug = relativePath.replace(/\.md$/i, "").replace(/\/index$/, "")
+  const rawSlug = relativePath.replace(/\.md$/i, "")
+  const slug = rawSlug === "index" ? "" : rawSlug.replace(/\/index$/, "")
 
   return {
     absolutePath,
@@ -103,6 +117,8 @@ const notes = markdownFiles.map((absolutePath) => {
 
 const slugs = new Set(notes.map((note) => note.slug))
 const aliases = new Map()
+const noteIdentifiers = new Map()
+const notesByRelativePath = new Map(notes.map((note) => [note.relativePath, note]))
 
 for (const note of notes) {
   const label = note.relativePath
@@ -125,8 +141,57 @@ for (const note of notes) {
     errors.push(`${label}: updated must use YYYY-MM-DD`)
   }
 
-  if (note.data.tags && (!Array.isArray(note.data.tags) || note.data.tags.length === 0)) {
-    errors.push(`${label}: tags must be a non-empty list`)
+  if (note.data.verified_at && !isValidUpdated(note.data.verified_at)) {
+    errors.push(`${label}: verified_at must use YYYY-MM-DD`)
+  }
+
+  if (note.data.source_commit && !/^[a-f0-9]{7,64}$/i.test(String(note.data.source_commit))) {
+    errors.push(`${label}: source_commit must be a 7-64 character hexadecimal Git hash`)
+  }
+
+  if (note.data.id && !stableIdPattern.test(String(note.data.id))) {
+    errors.push(`${label}: id must be a stable lowercase identifier`)
+  }
+
+  const identifiers = [note.data.id, ...asList(note.data.id_aliases)].filter(Boolean).map(String)
+  for (const identifier of identifiers) {
+    if (!stableIdPattern.test(identifier)) {
+      errors.push(`${label}: invalid note identifier "${identifier}"`)
+      continue
+    }
+
+    const owner = noteIdentifiers.get(identifier)
+    if (owner && owner !== label) {
+      errors.push(`${label}: note identifier "${identifier}" is already owned by ${owner}`)
+    } else {
+      noteIdentifiers.set(identifier, label)
+    }
+  }
+
+  if (note.data.id_aliases != null && !Array.isArray(note.data.id_aliases)) {
+    errors.push(`${label}: id_aliases must be a list`)
+  }
+
+  const projectMatch = note.relativePath.match(/^projects\/([^/]+)\//)
+  if (projectMatch && !note.data.project_id) {
+    errors.push(`${label}: project notes must include project_id`)
+  }
+
+  if (note.data.tags) {
+    if (!Array.isArray(note.data.tags) || note.data.tags.length === 0) {
+      errors.push(`${label}: tags must be a non-empty list`)
+    } else {
+      if (note.data.tags.length > 6) errors.push(`${label}: tags must contain at most 6 values`)
+
+      const seenTags = new Set()
+      for (const tag of note.data.tags.map(String)) {
+        if (!allowedTagPattern.test(tag)) {
+          errors.push(`${label}: tag "${tag}" must use domain/, tech/, or concern/`)
+        }
+        if (seenTags.has(tag)) errors.push(`${label}: duplicate tag "${tag}"`)
+        seenTags.add(tag)
+      }
+    }
   }
 
   const filename = path.posix.basename(note.relativePath)
@@ -136,8 +201,9 @@ for (const note of notes) {
 
   const markdown = withoutFencedCode(note.body)
   const headings = new Map()
+  const markdownLines = markdown.split(/\r?\n/)
 
-  for (const [index, line] of markdown.split(/\r?\n/).entries()) {
+  for (const [index, line] of markdownLines.entries()) {
     if (/^#\s+/.test(line)) {
       errors.push(`${label}:${index + 1}: body H1 duplicates Quartz ArticleTitle`)
     }
@@ -152,6 +218,27 @@ for (const note of notes) {
       )
     } else {
       headings.set(normalized, index + 1)
+    }
+  }
+
+  if (path.posix.basename(note.relativePath) !== "index.md") {
+    const relatedHeadingIndex = markdownLines.findIndex((line) =>
+      /^##\s+(?:관련 문서|Related knowledge)\s*$/i.test(line.trim()),
+    )
+
+    if (relatedHeadingIndex === -1) {
+      errors.push(`${label}: non-index notes must include a related knowledge section`)
+    } else {
+      const sectionLines = []
+      for (let index = relatedHeadingIndex + 1; index < markdownLines.length; index += 1) {
+        if (/^##\s+/.test(markdownLines[index])) break
+        sectionLines.push(markdownLines[index])
+      }
+
+      const relatedLinks = [...sectionLines.join("\n").matchAll(/\[\[([^\]]+)\]\]/g)]
+      if (relatedLinks.length === 0 || relatedLinks.length > 7) {
+        errors.push(`${label}: related knowledge section must contain 1-7 wikilinks`)
+      }
     }
   }
 
@@ -181,36 +268,60 @@ for (const note of notes) {
   }
 }
 
-for (const note of notes) {
-  const markdown = withoutFencedCode(note.body)
-  const wikilinks = markdown.matchAll(/\[\[([^\]]+)\]\]/g)
+function resolveWikilink(note, link) {
+  const rawTarget = link.split("|", 1)[0].split("#", 1)[0].trim()
+  if (!rawTarget) return null
 
-  for (const match of wikilinks) {
-    const rawTarget = match[1].split("|", 1)[0].split("#", 1)[0].trim()
-    if (!rawTarget) continue
+  const normalized = normalizeLinkTarget(rawTarget)
+  const candidates = []
 
-    const normalized = normalizeLinkTarget(rawTarget)
-    const candidates = []
-
-    if (rawTarget.startsWith("/") || rawTarget.startsWith("./") || rawTarget.startsWith("../")) {
-      candidates.push(
-        normalizeLinkTarget(path.posix.normalize(path.posix.join(note.directory, rawTarget))),
-      )
-    } else {
-      candidates.push(normalizeLinkTarget(path.posix.join(note.directory, rawTarget)))
-      candidates.push(normalized)
-    }
-
-    const basenameMatches = notes.filter(
-      (candidate) => path.posix.basename(candidate.slug) === path.posix.basename(normalized),
+  if (rawTarget.startsWith("/") || rawTarget.startsWith("./") || rawTarget.startsWith("../")) {
+    candidates.push(
+      normalizeLinkTarget(path.posix.normalize(path.posix.join(note.directory, rawTarget))),
     )
-    candidates.push(...basenameMatches.map((candidate) => candidate.slug))
+  } else {
+    candidates.push(normalizeLinkTarget(path.posix.join(note.directory, rawTarget)))
+    candidates.push(normalized)
+  }
 
-    const resolved = candidates.some((candidate) => slugs.has(candidate) || aliases.has(candidate))
+  for (const candidate of [...new Set(candidates)]) {
+    if (slugs.has(candidate)) return candidate
+    if (aliases.has(candidate)) return notesByRelativePath.get(aliases.get(candidate))?.slug ?? null
+  }
 
-    if (!resolved) {
-      errors.push(`${note.relativePath}: unresolved wikilink "[[${match[1]}]]"`)
+  const basenameMatches = notes.filter(
+    (candidate) => path.posix.basename(candidate.slug) === path.posix.basename(normalized),
+  )
+  return basenameMatches.length === 1 ? basenameMatches[0].slug : null
+}
+
+function wikilinksFor(note) {
+  return [...withoutFencedCode(note.body).matchAll(/\[\[([^\]]+)\]\]/g)].map((match) => match[1])
+}
+
+for (const note of notes) {
+  for (const link of wikilinksFor(note)) {
+    if (!resolveWikilink(note, link)) {
+      errors.push(`${note.relativePath}: unresolved wikilink "[[${link}]]"`)
     }
+  }
+}
+
+for (const note of notes) {
+  if (path.posix.basename(note.relativePath) === "index.md") continue
+
+  const indexPath = `${note.directory}/index.md`
+  const topicIndex = notesByRelativePath.get(indexPath)
+  if (!topicIndex) continue
+
+  const indexedSlugs = new Set(
+    wikilinksFor(topicIndex)
+      .map((link) => resolveWikilink(topicIndex, link))
+      .filter(Boolean),
+  )
+
+  if (!indexedSlugs.has(note.slug)) {
+    errors.push(`${note.relativePath}: topic index ${indexPath} does not link to this note`)
   }
 }
 

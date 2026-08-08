@@ -1,4 +1,7 @@
 ---
+id: systems
+id_aliases:
+  - public/systems
 title: Systems
 description: 홈서버, OpenClaw과 PKM처럼 여러 프로젝트와 에이전트가 함께 사용하는 시스템의 지식 지도.
 status: active
@@ -6,9 +9,8 @@ updated: 2026-08-03
 aliases:
   - 시스템
 tags:
-  - systems
-  - infrastructure
-  - pkm
+  - domain/infrastructure
+  - concern/navigation
 ---
 
 > [!summary]

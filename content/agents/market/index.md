@@ -1,14 +1,15 @@
 ---
+id: agents/market
+id_aliases:
+  - public/agents/market
 title: Market Agent
 description: 시장 조사, 평가, 아침 브리프 생성을 역할별 에이전트로 분리해 Telegram으로 전달하는 OpenClaw 시스템의 지식 지도.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - telegram
-  - pkm
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/market-research
 aliases:
   - 자산 관리 비서
   - OpenClaw Market Agent

@@ -1,4 +1,7 @@
 ---
+id: incidents
+id_aliases:
+  - public/incidents
 title: Incidents
 description: 실제 장애의 증상, 영향, 원인, 해결 방법, 재발 방지를 기록하는 지식 지도.
 status: active
@@ -8,9 +11,9 @@ aliases:
   - quartz/index
   - quartz/troubleshooting/index
 tags:
-  - incidents
-  - troubleshooting
-  - pkm
+  - domain/knowledge-management
+  - concern/incident-response
+  - concern/navigation
 ---
 
 > [!summary]

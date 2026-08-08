@@ -1,4 +1,7 @@
 ---
+id: playbooks
+id_aliases:
+  - public/playbooks
 title: Playbooks
 description: 반복해서 실행할 수 있는 보안, 배포, 운영, 복구 절차의 지식 지도.
 status: active
@@ -7,9 +10,9 @@ aliases:
   - 플레이북
   - playbook/index
 tags:
-  - playbooks
-  - operations
-  - pkm
+  - domain/infrastructure
+  - concern/operations
+  - concern/navigation
 ---
 
 > [!summary]

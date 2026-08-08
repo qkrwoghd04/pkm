@@ -1,4 +1,7 @@
 ---
+id: agents/calendar/morning-brief
+id_aliases:
+  - public/agents/calendar/morning-brief
 title: Calendar Morning Brief
 description: 매일 오전 Google Calendar를 읽기 전용으로 분석해 오늘 일정, 내일 첫 일정, 충돌과 준비사항을 Telegram으로 전달하는 기능.
 status: active
@@ -7,12 +10,11 @@ aliases:
   - Calendar 아침 브리핑
   - Calendar 아침 요약
 tags:
-  - agent/calendar
-  - openclaw
-  - cron
-  - morning-brief
-  - security
-  - operations
+  - domain/agent-automation
+  - tech/openclaw
+  - tech/google-calendar
+  - concern/automation
+  - concern/least-privilege
 ---
 
 > [!summary]

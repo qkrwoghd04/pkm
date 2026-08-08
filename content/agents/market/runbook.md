@@ -1,14 +1,16 @@
 ---
+id: agents/market/runbook
+id_aliases:
+  - public/agents/market/runbook
 title: Market Agent 운영 런북
 description: Market Agent의 CLI, Gateway, Telegram, Cron 장애를 점검하고 복구하는 운영 절차.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - troubleshooting
-  - runbook
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/operations
+  - concern/recovery
 aliases:
   - Market Agent Runbook
   - market-agent/10-runbook
@@ -102,3 +104,10 @@ openclaw logs --follow
 13. child agent 개별 테스트
 14. orchestrator 테스트
 15. cron 등록 및 run 확인
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[testing|테스트]]
+- [[automation|자동 실행]]
+- [[configuration|OpenClaw 설정]]

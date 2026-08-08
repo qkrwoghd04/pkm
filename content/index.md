@@ -1,4 +1,7 @@
 ---
+id: home
+id_aliases:
+  - public
 title: Jayden's Knowledge Repo
 description: Project knowledge, career reflections, agent systems, shared infrastructure, integrations, playbooks, and incident notes.
 status: active
@@ -6,7 +9,8 @@ updated: 2026-08-07
 aliases:
   - Jayden PKM
 tags:
-  - pkm
+  - domain/knowledge-management
+  - concern/navigation
 ---
 
 Hello, I'm Jayden, a Software Engineer based in South Korea.

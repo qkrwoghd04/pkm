@@ -1,4 +1,7 @@
 ---
+id: systems/home-server/setup
+id_aliases:
+  - public/systems/home-server/setup
 title: Ubuntu 홈서버 초기 구축
 description: 개인 비서 에이전트를 운영할 Zenbook에 Ubuntu Server, SSH, 절전 방지, tmux를 설정하는 초기 구축 절차.
 status: active
@@ -7,12 +10,10 @@ aliases:
   - Zenbook Ubuntu Server 초기 구축
   - calendar-agent/01-setup
 tags:
-  - system/home-server
-  - ubuntu
-  - zenbook
-  - server
-  - ssh
-  - tmux
+  - domain/infrastructure
+  - tech/ubuntu
+  - concern/setup
+  - concern/operations
 created: 2026-04-24
 source: calendar.md
 ---
@@ -152,7 +153,7 @@ Ctrl + b 누른 뒤 d
 tmux attach
 ```
 
-## 관련 노트
+## 관련 문서
 
 - [[networking|SSH와 Tailscale 네트워크 운영]]
 - [[../openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]

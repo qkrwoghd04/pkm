@@ -1,14 +1,16 @@
 ---
+id: integrations/alpha-vantage
+id_aliases:
+  - public/integrations/alpha-vantage
 title: Alpha Vantage
 description: Market Agent가 가격, 환율, 실적, 실적 캘린더 데이터를 조회하는 Alpha Vantage helper의 구현과 검증 방법.
 status: active
 updated: 2026-07-30
 tags:
-  - integration/alpha-vantage
-  - market
-  - alpha-vantage
-  - python
-  - data
+  - domain/market-analysis
+  - tech/alpha-vantage
+  - tech/python
+  - concern/data-access
 aliases:
   - Alpha Vantage Helper
   - market-agent/04-alpha-vantage
@@ -147,10 +149,16 @@ python3 ~/.openclaw/workspace-market/bin/alpha_vantage.py calendar 3month AAPL |
 
 ## 명령 요약
 
-| 명령 | 목적 |
-|---|---|
-| `quote <SYMBOL>` | 개별 종목 quote 조회 |
-| `fx <FROM> <TO>` | 환율 조회 |
-| `earnings <SYMBOL>` | 실적 이력 조회 |
-| `calendar 3month <SYMBOL>` | 실적 캘린더 조회 |
+| 명령                            | 목적                            |
+| ------------------------------- | ------------------------------- |
+| `quote <SYMBOL>`                | 개별 종목 quote 조회            |
+| `fx <FROM> <TO>`                | 환율 조회                       |
+| `earnings <SYMBOL>`             | 실적 이력 조회                  |
+| `calendar 3month <SYMBOL>`      | 실적 캘린더 조회                |
 | `call <FUNCTION> key=value ...` | Alpha Vantage raw function 호출 |
+
+## 관련 문서
+
+- [[index|Integrations]]
+- [[../agents/market/prerequisites|Market Agent 사전 준비]]
+- [[../agents/market/portfolio-model|포트폴리오 모델]]

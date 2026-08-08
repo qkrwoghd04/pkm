@@ -1,4 +1,7 @@
 ---
+id: systems/pkm/knowledge-lifecycle
+id_aliases:
+  - public/systems/pkm/knowledge-lifecycle
 title: AI-assisted PKM 지식 생명주기
 description: 원본 자료와 작업 경험을 검토된 지식으로 승격하고 다시 검색·관리하는 운영 절차.
 status: active
@@ -7,10 +10,9 @@ aliases:
   - PKM 지식 생명주기
   - AI-assisted PKM workflow
 tags:
-  - system/pkm
-  - knowledge-lifecycle
-  - knowledge-management
-  - human-review
+  - domain/knowledge-management
+  - concern/human-review
+  - concern/knowledge-lifecycle
 ---
 
 > [!summary]

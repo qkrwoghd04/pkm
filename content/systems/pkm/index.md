@@ -1,4 +1,7 @@
 ---
+id: systems/pkm
+id_aliases:
+  - public/systems/pkm
 title: PKM System
 description: Markdown 원본을 수집·검토·게시·검색하는 개인 지식 관리 시스템의 지식 지도.
 status: active
@@ -7,9 +10,9 @@ aliases:
   - PKM 시스템
   - 지식 관리 시스템
 tags:
-  - system/pkm
-  - pkm
-  - knowledge-management
+  - domain/knowledge-management
+  - concern/navigation
+  - concern/knowledge-lifecycle
 ---
 
 > [!summary]

@@ -1,4 +1,7 @@
 ---
+id: playbooks/security-hardening
+id_aliases:
+  - public/playbooks/security-hardening
 title: Ubuntu Server 보안 하드닝
 description: Tailscale, SSH 공개키 인증, UFW, OpenClaw loopback을 이용해 Ubuntu 홈서버의 원격 접근을 제한하는 절차.
 status: active
@@ -8,10 +11,11 @@ aliases:
   - Ubuntu Server 기본 보안 설정 정리
   - playbook/security-setting
 tags:
-  - playbook/security
-  - security
-  - server
-  - ssh
+  - domain/infrastructure
+  - tech/ubuntu
+  - tech/tailscale
+  - concern/security
+  - concern/least-privilege
 ---
 
 이 문서는 이번 세션에서 진행한 **기본 보안 설정**을 처음부터 다시 따라갈 수 있도록 정리한 문서다.
@@ -516,3 +520,9 @@ sudo systemctl status ssh --no-pager
 - fail2ban 여부 검토
 - OpenClaw insecure auth 옵션 재점검
 - 정기 보안 점검 체크리스트 문서화
+
+## 관련 문서
+
+- [[index|Playbooks]]
+- [[../systems/home-server/index|Home Server]]
+- [[../systems/home-server/networking|SSH와 Tailscale 네트워크 운영]]

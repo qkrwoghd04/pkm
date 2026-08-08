@@ -1,4 +1,7 @@
 ---
+id: integrations/outline-mcp
+id_aliases:
+  - public/integrations/outline-mcp
 title: Outline MCP 읽기 전용 연결
 description: Outline 지식을 MCP로 조회할 때 자격 증명, 도구, 문서 권한을 최소 범위로 제한하는 운영 절차.
 status: active
@@ -6,11 +9,10 @@ updated: 2026-08-07
 aliases:
   - Outline MCP read-only setup
 tags:
-  - outline
-  - mcp
-  - read-only
-  - least-privilege
-  - runbook
+  - domain/knowledge-management
+  - tech/outline
+  - tech/mcp
+  - concern/least-privilege
 ---
 
 > [!summary]
@@ -60,3 +62,9 @@ Codex
 클라이언트의 도구 허용 목록은 실수 방지에는 유용하지만 단독으로는 강한 보안 경계가 아니다. MCP 서버가 다른 클라이언트에서 실행되거나 설정이 바뀌면 쓰기 도구가 다시 노출될 수 있기 때문이다. 중요한 문서는 Outline 자체 권한까지 읽기 전용으로 제한한다.
 
 자격 증명은 정기적으로 교체하고, 접근 범위가 변경될 때마다 검색·읽기 성공과 쓰기 차단을 함께 재검증한다.
+
+## 관련 문서
+
+- [[index|Integrations]]
+- [[../systems/pkm/index|PKM System]]
+- [[../playbooks/security-hardening|Ubuntu Server 보안 하드닝]]

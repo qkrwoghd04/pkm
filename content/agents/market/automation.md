@@ -1,14 +1,16 @@
 ---
+id: agents/market/automation
+id_aliases:
+  - public/agents/market/automation
 title: Market Agent 자동 실행
 description: Market 아침 브리프의 one-shot 검증과 평일 오전 예약 실행을 등록·점검하는 OpenClaw Cron 절차.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - cron
-  - telegram
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/automation
+  - concern/notifications
 aliases:
   - Morning Market Brief Cron
   - market-agent/09-cron
@@ -70,3 +72,10 @@ openclaw cron runs --limit 20
 ## 주의
 
 `0 8 * * 1-5`는 월~금 오전 8시 실행이다. 토요일에는 실행되지 않는 것이 정상이다.
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[configuration|OpenClaw 설정]]
+- [[telegram|Telegram 연결]]
+- [[runbook|운영 런북]]

@@ -1,14 +1,15 @@
 ---
+id: agents/market/configuration
+id_aliases:
+  - public/agents/market/configuration
 title: Market Agent OpenClaw 설정
 description: openclaw.json에 Market 계열 agent의 workspace, tool policy, subagent 구성을 반영하고 검증하는 방법.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - config
-  - json
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/configuration
 aliases:
   - openclaw.json
   - market-agent/06-openclaw-config
@@ -100,9 +101,16 @@ openclaw gateway probe
 
 ## 설정 의도
 
-| Agent | Tool policy | 이유 |
-|---|---|---|
-| `market` | runtime/web/automation deny | orchestrator는 child agent와 파일 handoff 중심 |
-| `market-plan` | runtime/web/automation deny | 계획 agent는 실행/검색 없이 체크리스트 작성 |
-| `market-research` | automation deny | web/data 수집 필요, 자동화 실행은 차단 |
-| `market-eval` | runtime/web/automation deny | 주어진 근거만 평가 |
+| Agent             | Tool policy                 | 이유                                           |
+| ----------------- | --------------------------- | ---------------------------------------------- |
+| `market`          | runtime/web/automation deny | orchestrator는 child agent와 파일 handoff 중심 |
+| `market-plan`     | runtime/web/automation deny | 계획 agent는 실행/검색 없이 체크리스트 작성    |
+| `market-research` | automation deny             | web/data 수집 필요, 자동화 실행은 차단         |
+| `market-eval`     | runtime/web/automation deny | 주어진 근거만 평가                             |
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[architecture|구조와 역할]]
+- [[telegram|Telegram 연결]]
+- [[../../systems/openclaw/index|OpenClaw]]

@@ -1,4 +1,7 @@
 ---
+id: systems/openclaw
+id_aliases:
+  - public/systems/openclaw
 title: OpenClaw
 description: 여러 에이전트가 공유하는 OpenClaw Gateway와 Telegram 연결 기반을 설명하는 지식 지도.
 status: active
@@ -6,9 +9,9 @@ updated: 2026-07-30
 aliases:
   - OpenClaw 시스템
 tags:
-  - system/openclaw
-  - openclaw
-  - infrastructure
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/operations
 ---
 
 > [!summary]

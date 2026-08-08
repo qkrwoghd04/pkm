@@ -1,4 +1,7 @@
 ---
+id: agents/calendar/architecture
+id_aliases:
+  - public/agents/calendar/architecture
 title: Calendar Agent 구조와 연동
 description: OpenClaw Calendar Agent가 systemd 환경에서 gog CLI로 대화형 일정 관리와 읽기 전용 Morning Brief를 수행하는 구조.
 status: active
@@ -7,12 +10,10 @@ aliases:
   - Calendar Agent Integration
   - calendar-agent/05-integration
 tags:
-  - agent/calendar
-  - openclaw
-  - calendar-agent
-  - gog
-  - systemd
-  - telegram
+  - domain/agent-automation
+  - tech/openclaw
+  - tech/google-calendar
+  - concern/systemd
 created: 2026-04-24
 source: calendar.md
 ---
@@ -127,7 +128,7 @@ openclaw gateway probe
 - 기본 캘린더 외 쓰기는 명시 승인 후만 허용한다.
 - Morning Brief는 `events`와 `conflicts` 조회만 허용하고 Calendar 쓰기 명령을 금지한다.
 
-## 관련 노트
+## 관련 문서
 
 - [[../../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
 - [[../../integrations/google-calendar-gog|Google Calendar와 gog CLI 연동]]

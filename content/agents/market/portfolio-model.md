@@ -1,13 +1,15 @@
 ---
+id: agents/market/portfolio-model
+id_aliases:
+  - public/agents/market/portfolio-model
 title: Market Agent 포트폴리오 모델
 description: Market Agent가 참조하는 portfolio.yaml의 공개 가능한 필드 구조와 민감한 보유 정보를 분리하는 관리 원칙.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - market
-  - portfolio
-  - yaml
+  - domain/market-analysis
+  - tech/yaml
+  - concern/data-modeling
 aliases:
   - portfolio.yaml
   - market-agent/03-portfolio
@@ -55,3 +57,9 @@ notes:
 - 공개 PKM에는 실제 보유 종목, 수량, 평균단가와 참고 가격을 복사하지 않는다.
 - 한국 상장 ETF는 미국 시장, 환율, 기초지수 흐름을 함께 본다.
 - Market Agent는 실제 매매를 실행하지 않고, 보수적인 제안과 불확실성을 표시한다.
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[operating-rules|운영 지침]]
+- [[../../integrations/alpha-vantage|Alpha Vantage]]

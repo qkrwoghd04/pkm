@@ -1,13 +1,15 @@
 ---
+id: agents/market/testing
+id_aliases:
+  - public/agents/market/testing
 title: Market Agent 테스트
 description: Market의 plan, research, eval child agent와 orchestrator를 개별 검증하는 명령과 통과 기준.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - testing
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/testing
 aliases:
   - Market Agent Testing
   - market-agent/08-testing
@@ -78,3 +80,9 @@ cat ~/.openclaw/workspace-market/evidence/latest.md
 - Telegram으로 요약이 전달되는가
 - 불확실성이 명시되는가
 - 실제 매매 실행처럼 표현하지 않는가
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[architecture|구조와 역할]]
+- [[runbook|운영 런북]]

@@ -1,4 +1,7 @@
 ---
+id: integrations/google-calendar-gog
+id_aliases:
+  - public/integrations/google-calendar-gog
 title: Google Calendar와 gog CLI 연동
 description: Ubuntu 홈서버에서 gog CLI로 Google Calendar를 조회·관리하기 위한 OAuth, 설치, 인증, keyring 설정 절차.
 status: active
@@ -8,12 +11,11 @@ aliases:
   - Google Calendar gog CLI 설정
   - calendar-agent/04-google-cli
 tags:
-  - integration/google-calendar
-  - google-calendar
-  - gog
-  - oauth
-  - linuxbrew
-  - openclaw
+  - domain/agent-automation
+  - tech/google-calendar
+  - tech/openclaw
+  - concern/oauth
+  - concern/systemd
 created: 2026-04-24
 source: calendar.md
 ---
@@ -193,7 +195,7 @@ gog -a [내 구글 계정] calendar create "$CAL_ID" \
   --description "5월 특순 연습"
 ```
 
-## 관련 노트
+## 관련 문서
 
 - [[../systems/openclaw/gateway|OpenClaw Gateway와 Telegram 연결]]
 - [[../agents/calendar/architecture|Calendar Agent 구조와 연동]]

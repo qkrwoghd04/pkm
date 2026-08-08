@@ -1,11 +1,14 @@
 ---
+id: projects
+id_aliases:
+  - public/projects
 title: Projects
 description: "업무와 개인 프로젝트에서 축적한 구조, 요구사항, 결정, 장애 해결 지식을 프로젝트별로 탐색하는 지도."
 status: active
 updated: "2026-08-07"
 tags:
-  - projects
-  - pkm
+  - domain/project-portfolio
+  - concern/navigation
 ---
 
 > [!summary]

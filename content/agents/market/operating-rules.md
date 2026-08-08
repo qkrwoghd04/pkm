@@ -1,14 +1,15 @@
 ---
+id: agents/market/operating-rules
+id_aliases:
+  - public/agents/market/operating-rules
 title: Market Agent 운영 지침
 description: Market orchestrator와 plan, research, eval agent에 적용하는 역할, 입력, 출력, 금지사항, 파일 계약.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - agents
-  - prompts
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/human-review
 aliases:
   - Market Agent Instructions
   - AGENTS.md
@@ -236,3 +237,9 @@ cat > ~/.openclaw/workspace-market/TOOLS.md <<'EOF'
 - /home/[내 서버 사용자명]/.openclaw/workspace-market/evidence/latest.md
 EOF
 ```
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[architecture|구조와 역할]]
+- [[testing|테스트]]

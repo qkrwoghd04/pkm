@@ -1,14 +1,16 @@
 ---
+id: agents/market/telegram
+id_aliases:
+  - public/agents/market/telegram
 title: Market Agent Telegram 연결
 description: Market 전용 Telegram bot을 OpenClaw의 market agent에 라우팅하고 pairing하는 설정 절차.
 status: active
 updated: 2026-07-30
 tags:
-  - agent/market
-  - openclaw
-  - market
-  - telegram
-  - bot
+  - domain/agent-automation
+  - tech/openclaw
+  - tech/telegram
+  - concern/routing
 aliases:
   - market_bot
   - market-agent/07-telegram
@@ -126,3 +128,9 @@ chmod 600 ~/.openclaw/.env
 - `MARKET_BOT_TOKEN`은 평문 노트에 저장하지 않는다.
 - `MARKET_REPORT_CHAT_ID`도 공개 저장소에는 올리지 않는다.
 - pairing code는 일회성 값으로 다룬다.
+
+## 관련 문서
+
+- [[index|Market Agent]]
+- [[configuration|OpenClaw 설정]]
+- [[../../systems/openclaw/index|OpenClaw]]

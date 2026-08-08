@@ -1,4 +1,7 @@
 ---
+id: career/working-principles
+id_aliases:
+  - public/career/working-principles
 title: 업무 원칙
 description: 지식과 기술을 넘어 신뢰를 만드는 인격, 원칙, 유연함에 관한 개인적인 업무 기준.
 status: active
@@ -7,10 +10,9 @@ aliases:
   - 회사 생활에서 더 중요해지는 능력, 인격
   - 고집을 내려놓고 원칙과 유연함을 구분하기
 tags:
-  - career
-  - working-principles
-  - professional-growth
-  - trust
+  - domain/professional-growth
+  - concern/reflection
+  - concern/trust
 ---
 
 > [!summary]
@@ -61,3 +63,9 @@ tags:
 ## 앞으로 축적할 증거
 
 이 원칙을 선언에 그치지 않게 하려면 프로젝트 문서에 실제 사례를 남겨야 한다. 의견 충돌을 해결한 경험, 피드백을 받아 결정을 수정한 사례, 신뢰를 회복한 과정, 원칙을 지키면서 방법을 바꾼 순간을 구체적인 근거와 함께 기록한다.
+
+## 관련 문서
+
+- [[index|Career]]
+- [[../projects/oneQ/career-notes|원큐파트너스 경력 정리 노트]]
+- [[../projects/index|Projects]]

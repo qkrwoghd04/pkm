@@ -1,4 +1,7 @@
 ---
+id: systems/home-server/networking
+id_aliases:
+  - public/systems/home-server/networking
 title: SSH와 Tailscale 네트워크 운영
 description: Ubuntu 홈서버에 LAN, Tailscale, Wi-Fi, 핫스팟 환경에서 안정적으로 접속하기 위한 네트워크 운영 방법.
 status: active
@@ -8,12 +11,11 @@ aliases:
   - SSH Tailscale 네트워크 운영
   - calendar-agent/02-network
 tags:
-  - system/home-server
-  - ssh
-  - tailscale
-  - netplan
-  - wifi
-  - ubuntu
+  - domain/infrastructure
+  - tech/tailscale
+  - tech/ubuntu
+  - concern/networking
+  - concern/operations
 created: 2026-04-24
 source: calendar.md
 ---
@@ -199,7 +201,7 @@ tailscale ip -4
 sudo tailscale set --ssh
 ```
 
-## 관련 노트
+## 관련 문서
 
 - [[setup|Ubuntu 홈서버 초기 구축]]
 - [[../../agents/calendar/runbook|Calendar Agent 운영 런북]]

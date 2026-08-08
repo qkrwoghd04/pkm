@@ -1,4 +1,7 @@
 ---
+id: agents
+id_aliases:
+  - public/agents
 title: Agents
 description: 운영 중인 에이전트의 목적, 구조, 행동 규칙, 설정, 검증, 자동화, 런북을 연결하는 지식 지도.
 status: active
@@ -6,9 +9,9 @@ updated: 2026-07-30
 aliases:
   - 에이전트
 tags:
-  - agents
-  - openclaw
-  - pkm
+  - domain/agent-automation
+  - tech/openclaw
+  - concern/navigation
 ---
 
 > [!summary]

@@ -1,5 +1,7 @@
 ---
 id: projects/oneq-partners
+id_aliases:
+  - public/projects/oneq-partners
 title: 원큐파트너스
 description: 영업 파트너, 고객, 운영사, 공급업체를 연결하는 다자간 견적 중개 프로젝트와 담당 경험을 요약한 기록.
 knowledge_type: project
@@ -15,12 +17,10 @@ aliases:
   - projects/oneq-partners/project-overview
   - projects/oneq-partners/mvp-workflow
 tags:
-  - project/oneq-partners
-  - project-history
-  - quotation-brokerage
-  - multi-channel
-  - mobile-fixed-view
-  - hybrid-app
+  - domain/quotation-brokerage
+  - tech/hybrid-app
+  - concern/multi-channel
+  - concern/project-history
 keywords:
   - 원큐파트너스
   - 다자간 견적 중개

@@ -1,4 +1,7 @@
 ---
+id: agents/calendar
+id_aliases:
+  - public/agents/calendar
 title: Calendar Agent
 description: Telegram 일정 관리와 매일 읽기 전용 아침 브리핑을 제공하는 OpenClaw Calendar Agent의 개요와 지식 지도.
 status: active
@@ -10,11 +13,9 @@ aliases:
   - calendar-agent/index
   - calendar-agent/00-index
 tags:
-  - agent/calendar
-  - openclaw
-  - calendar
-  - pkm
-  - agent
+  - domain/agent-automation
+  - tech/openclaw
+  - tech/google-calendar
 created: 2026-04-24
 source: calendar.md
 ---
