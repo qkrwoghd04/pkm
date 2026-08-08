@@ -153,6 +153,7 @@ project_kind: work
 
 ## 장기 보존 대상
 
+- [[architecture|프론트엔드 아키텍처]]
 - [[career-notes|이력서·경력 정리 재료]]
 - [[troubleshooting|트러블슈팅과 장애 기록]]
 
