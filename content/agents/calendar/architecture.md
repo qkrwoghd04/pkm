@@ -15,7 +15,6 @@ tags:
   - tech/google-calendar
   - concern/systemd
 created: 2026-04-24
-source: calendar.md
 ---
 
 > [!summary]

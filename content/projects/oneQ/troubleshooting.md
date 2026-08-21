@@ -34,23 +34,24 @@ tags:
 
 ## 파일 규칙
 
-- 위치: `projects/oneQ/`
-- 파일명: `incident-<semantic-kebab-case>.md`
-- 상태: 해결된 사건은 `resolved`, 조사 중이면 `draft`
-- 한 문서는 하나의 사건만 다룬다.
-- 결정과 runbook도 하위 폴더를 만들지 않고 각각 `decision-*`, `runbook-*` 접두사로 같은 위치에서 관리한다.
+- `projects/oneQ/`에 `incident-<semantic-kebab-case>.md`로 저장한다.
+- 한 문서는 하나의 사건만 다루고, 해결된 사건은 `resolved`, 조사 중인 사건은 `draft`로 표시한다.
+- 결정과 runbook도 필요할 때 같은 위치에서 `decision-*`, `runbook-*` 접두사로 관리한다.
 
 ## Incident 템플릿
 
 ```md
 ---
+id: projects/oneq-partners/incident-example
 title: 문제를 식별할 수 있는 제목
 description: 증상과 최종 원인을 한 문장으로 요약.
+project_id: oneq-partners
 status: resolved
 updated: YYYY-MM-DD
 tags:
-  - project/oneq-partners
-  - incident
+  - domain/quotation-brokerage
+  - concern/debugging
+  - concern/incident-response
 ---
 
 > [!summary]

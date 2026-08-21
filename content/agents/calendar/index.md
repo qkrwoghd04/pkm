@@ -17,7 +17,6 @@ tags:
   - tech/openclaw
   - tech/google-calendar
 created: 2026-04-24
-source: calendar.md
 ---
 
 > [!summary]

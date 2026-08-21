@@ -16,7 +16,6 @@ tags:
   - concern/routing
   - concern/systemd
 created: 2026-04-24
-source: calendar.md
 ---
 
 ## 목적
