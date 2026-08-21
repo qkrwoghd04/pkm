@@ -7,7 +7,7 @@ description: 영업 파트너, 고객, 운영사, 공급업체를 연결하는 �
 knowledge_type: project
 project_id: oneq-partners
 status: active
-updated: "2026-08-07"
+updated: "2026-08-21"
 aliases:
   - 원큐파트너스
   - 1QP
@@ -78,6 +78,8 @@ project_kind: work
 이 프로젝트의 1차 업무 종료점은 **고객과 선택 공급업체가 최종 공급업체와 견적에 합의한 시점**이다. 실제 계약 체결과 계약 이후 서비스 이행은 별도 영역으로 본다.
 
 ## 서비스 구성
+
+서비스별 기준 도메인과 QR Gateway는 [[domain-map|서비스 도메인]]에서 관리한다.
 
 | 서비스                | 주요 사용자                        | 역할                                                                        |
 | --------------------- | ---------------------------------- | --------------------------------------------------------------------------- |
@@ -150,6 +152,7 @@ project_kind: work
 
 ## 장기 보존 대상
 
+- [[domain-map|서비스 도메인]]
 - [[architecture|프론트엔드 아키텍처]]
 - [[decision-expo-organization-ownership|Expo Organization 소유권과 인수인계]]
 - [[career-notes|이력서·경력 정리 재료]]
