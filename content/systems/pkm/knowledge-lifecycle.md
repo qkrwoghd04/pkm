@@ -3,9 +3,9 @@ id: systems/pkm/knowledge-lifecycle
 id_aliases:
   - public/systems/pkm/knowledge-lifecycle
 title: AI-assisted PKM 지식 생명주기
-description: 원본 자료와 작업 경험을 검토된 지식으로 승격하고 다시 검색·관리하는 운영 절차.
+description: 메모를 수집하고 자동 또는 수동으로 Ready로 정리한 뒤 명시적으로 선택한 지식만 검증·게시하는 세 단계 운영 절차.
 status: active
-updated: 2026-08-03
+updated: 2026-08-21
 aliases:
   - PKM 지식 생명주기
   - AI-assisted PKM workflow
@@ -16,121 +16,131 @@ tags:
 ---
 
 > [!summary]
-> 지식은 `raw source → ingest review → canonical knowledge → retrieval → closeout and lint` 순서로 관리한다. AI는 후보를 만들고 연결하지만, 사람이 승인한 내용만 canonical knowledge가 된다.
+> 사용자에게 보이는 상태는 `Captured → Ready → Published` 세 가지다. `기록해:`로 수집한 메모는 기본적으로 매일 자동 정리하고, 필요하면 `준비해: <Captured ID>`로 같은 Ready 승격을 즉시 수동 실행한다. 공개는 `공개해: <Ready ID>`로 별도 승인한다.
 
-## Why this lifecycle exists
+## 세 가지 상태
 
-대화, 영상, 프로젝트 산출물과 작업 기록을 그대로 검색 대상으로 쌓으면 중복, 오래된 사실, 개인정보와 임시 판단이 섞이기 쉽다. 이 생명주기는 원본과 정식 지식을 분리하고, AI의 정리 능력을 활용하면서도 지식의 정확성과 공개 경계를 사람이 통제하기 위한 규칙이다.
+| 상태      | 의미                                              | 신뢰 수준        | 공개 여부 |
+| --------- | ------------------------------------------------- | ---------------- | --------- |
+| Captured  | 원문과 맥락을 보존한 비공개 임시 메모             | 미정리           | 비공개    |
+| Ready     | 자동 또는 수동으로 중복을 병합한 비공개 공개 초안 | 미공개·검토 가능 | 비공개    |
+| Published | 검증·push·배포까지 완료된 canonical 문서          | 공개 참고자료    | 공개      |
 
-## Knowledge states
+`decision`, `incident`, `pattern`, `runbook`, `project-note`, `career`는 상태가 아니라 Ready 문서가 어떤 지식인지 설명하는 분류다. 메모를 별도 명령으로 Decision이나 Publish candidate에 승격하지 않는다.
 
-| 상태                 | 역할                                          | 신뢰 수준          | 기본 검색    |
-| -------------------- | --------------------------------------------- | ------------------ | ------------ |
-| Raw source           | 원문, transcript, 참고자료와 작업 산출물 보존 | 출처 자체로만 유효 | 제외         |
-| Ingest review        | 기존 지식과 비교한 변경 후보                  | 미검증             | 제외         |
-| Canonical knowledge  | 사람이 승인한 현재 지식                       | 검증된 참고자료    | 포함         |
-| Decision or incident | 선택 이유 또는 해결된 문제의 기록             | 문서 상태에 따름   | 승인 후 포함 |
-| Archive              | 대체되었거나 더 이상 사용하지 않는 기록       | 역사적 참고        | 제외         |
+## 1. Captured
 
-## Lifecycle
+Chief Telegram에서 메시지를 `기록해:`로 시작하면 비공개 inbox에 새 메모를 만든다.
 
-### 1. Capture
+```text
+기록해: systemd 서비스는 로그인 셸의 PATH를 자동 상속하지 않는다.
+```
 
-가치 있는 원본만 선택적으로 수집한다. 원본과 함께 다음 맥락을 남겨야 한다.
+Capture 과정에서 AI는 다음만 보완한다.
 
-- 왜 저장하는가
-- 어떤 질문이나 프로젝트에 활용할 것인가
-- 원문 전체인지 일부 발췌인지
-- 출처와 수집 시점은 무엇인가
-- 개인정보나 공개할 수 없는 내용이 포함되어 있는가
+- 원문을 훼손하지 않은 요약
+- 검색에 도움이 되는 태그
+- 관련되거나 중복된 기존 문서
+- 나중에 확인해야 할 질문
 
-Raw source는 수정하지 않고 비공개로 보존하며 Quartz와 MCP 기본 검색에서 제외한다. 모든 대화, 화면과 음성을 상시 기록하는 방식은 검색 잡음과 개인정보 위험 때문에 기본 운영 원칙으로 채택하지 않는다.
+`메모해:`, `저장해:`, 평서문이나 과거 메시지 인용은 저장 권한으로 해석하지 않는다. 같은 내용을 다시 기록하더라도 새 메모는 보존하고 중복 관계를 연결해 정리 단계에서 병합한다.
 
-### 2. Ingest
+## 2. Ready 승격
 
-AI는 새 자료만 요약하기 전에 현재 PKM을 먼저 검색한다. 새 문서를 무조건 만들지 않고 다음 중 필요한 변경을 최대 세 개까지 제안한다.
+### 기본 자동 경로
 
-- 기존 canonical 문서 갱신
-- 프로젝트별 decision 또는 incident 추가
-- 여러 프로젝트에서 재사용할 pattern 또는 playbook 추가
-- 지속적인 지식이 없을 때 `no canonical change`로 종료
+매일 21:30 Asia/Seoul에 curator가 새 Captured 메모를 검토한다. 이 과정은 공개하지 않는다.
 
-제안에는 근거 source, 기존 문서와의 차이, 불확실성, 공개 제외 항목과 예상 목적지를 포함한다.
+1. 아직 정리되지 않은 Captured 메모를 찾는다.
+2. 기존 public/reference 지식을 먼저 검색한다.
+3. 중복되거나 같은 주제인 메모를 병합한다.
+4. 새 문서보다 기존 canonical 문서 갱신을 우선한다.
+5. 지식 유형과 대상 경로를 정한다.
+6. 민감정보를 제거하고 완전한 공개 Markdown 초안을 만든다.
+7. 최대 다섯 개의 Ready 항목과 정확한 Ready ID를 Telegram으로 알린다.
 
-### 3. Review
+### 수동 즉시 경로
 
-사람은 source가 주장하는 사실과 실제 운영에 채택할 결정을 구분해 검토한다. 다음 조건을 만족할 때만 승격한다.
+자동 실행을 기다리지 않고 특정 Captured 메모를 처리하려면 정확한 ID를 지정해 다음처럼 요청한다.
 
-- 현재 코드와 저장소 문서에 모순되지 않는다.
-- 임시 아이디어를 확정된 사실처럼 표현하지 않는다.
-- 중복 문서를 만들지 않고 기존 authoritative note를 갱신한다.
-- 개인정보, 자격증명과 내부 전용 정보가 제거되었다.
-- 향후 다시 검색하거나 적용할 지속적인 가치가 있다.
+```text
+준비해: <Captured ID>
+```
 
-미검증 후보는 inbox 또는 publish-ready 상태로 유지하며 canonical 근거로 사용하지 않는다. Closeout 후보는 명시적 승인 후에만 create-only MCP가 비공개 `inbox/closeouts`에 생성한다.
+이 명령은 자동 경로와 같은 중복 검색, 분류, 목적지 선택, 민감정보 제거, 초안 검증과 해시 생성을 즉시 실행한다.
 
-### 4. Publish
+1. Captured ID가 실제로 존재하는지 확인한다.
+2. 이미 Ready가 있으면 새 문서를 만들지 않고 기존 Ready ID를 반환한다.
+3. 없으면 Ready를 만들고 내부 메타데이터에 `curation_trigger: manual`을 기록한다.
+4. Ready ID만 반환하며, 이 명령만으로 공개하거나 Git에 반영하지 않는다.
 
-승인된 내용을 의미 중심의 Markdown 문서로 반영한다. 공개 반영 전에는 다음 순서를 지킨다.
+`준비해`, `모두 준비해`처럼 대상 ID가 없거나 여러 메모를 암시하는 요청은 실행하지 않고 정확한 Captured ID를 다시 요청한다.
 
-1. 관련 index와 wikilink를 함께 갱신한다.
-2. 콘텐츠 구조와 frontmatter를 검사한다.
-3. 민감정보 패턴을 검사한다.
-4. Quartz build로 문서와 링크를 검증한다.
-5. Git diff를 사람이 확인한다.
-6. 명시적 승인 후에만 push하고 배포한다.
+이미 canonical 문서에 반영됐거나 중복·일시적·근거 부족·민감정보 때문에 Ready가 필요 없는 메모는 내부 curation receipt로 정리 완료 처리한다. 이 영수증은 같은 메모를 매일 다시 읽지 않기 위한 운영 기록이며 사용자에게 보이는 네 번째 상태가 아니다.
 
-AI가 canonical 문서를 무승인으로 수정하거나 자동 push하는 흐름은 사용하지 않는다.
+Ready는 다음 정보를 포함한다.
 
-### 5. Query
+- 근거가 된 Captured 메모
+- 지식 유형
+- 제안 대상 경로
+- 공개 초안 전체
+- 민감정보 검사 여부
+- 공개 초안의 SHA-256 해시
+- 승격 트리거(`scheduled` 또는 `manual`)
 
-AI가 PKM을 사용할 때는 프로젝트별 지식을 먼저 찾고, 그다음 여러 프로젝트에 재사용할 수 있는 pattern을 찾는다. 답변에는 사용한 note와 관련 구간을 표시한다.
+Captured 원문이 바뀌거나 Ready 초안이 변조되면 해시 검증이 실패해 공개할 수 없다.
 
-정보가 충돌할 때의 우선순위는 다음과 같다.
+## 3. Published
 
-1. 현재 코드와 테스트
-2. 현재 저장소의 `AGENTS.md`와 로컬 문서
-3. active canonical 문서와 accepted decision
-4. resolved incident와 재사용 pattern
-5. 미검증 inbox 또는 publish-ready 후보
+공개는 Ready ID 한 개를 지정한 다음 형식으로만 승인한다.
 
-PKM에 근거가 없거나 오래되었다면 그 사실을 밝히고 현재 저장소를 기준으로 계속 진행한다.
+```text
+공개해: 2026-08-10-213000-systemd-environment
+```
 
-### 6. Closeout
+`공개해`, `모두 공개해`, `1번 공개해`처럼 대상을 확정할 수 없는 문구는 승인으로 처리하지 않는다. 승인된 한 건은 다음 게이트를 모두 통과해야 한다.
 
-의미 있는 작업을 마치면 새로 확인된 knowledge delta를 최대 세 개까지 제안한다.
+1. Ready ID와 원본 요청 일치
+2. 대상 경로 allowlist와 경로 탈출 차단
+3. 공개 초안 SHA-256 재검증
+4. 자격증명·이메일·비공개 데이터 검사
+5. 전체 콘텐츠 구조와 wikilink 검사
+6. Quartz build
+7. Git `main` push
+8. 기존 release 파이프라인 배포
+9. 실서비스 HTTP 200 health check
 
-- 해결한 incident와 재발 방지책
-- 장기간 유지할 설계 decision
-- 다른 프로젝트에 재사용할 pattern
-- 변경된 runbook 또는 운영 절차
+한 단계라도 실패하면 Ready 항목은 미공개 상태로 남는다. 배포까지 성공한 항목만 Published 보관함으로 이동한다.
 
-후보에는 제목, 보존 이유, 대상 위치, 근거 코드·문서와 공개 가능 여부를 포함한다. 사용자 승인 전에는 저장하거나 canonical 문서를 변경하지 않는다. 승인 후에도 먼저 미검증 비공개 inbox 후보로만 생성하며, 기존 canonical 문서 병합과 공개 배포는 별도 검토와 승인을 요구한다.
+## 검색 우선순위
 
-Codex의 자동 후보 선정 기준과 승인 경계는 [[closeout-workflow|PKM Closeout Workflow]]에서 관리한다.
+AI가 답변할 때의 우선순위는 다음과 같다.
 
-### 7. Lint
+1. 현재 프로젝트 코드와 테스트
+2. 저장소의 `AGENTS.md`와 로컬 문서
+3. Published canonical 문서와 accepted legacy decision
+4. private reference
+5. Ready 초안
+6. Captured 메모
 
-정기적으로 다음 상태를 점검한다.
+Ready는 `미공개 Ready 초안`, Captured는 `미정리 메모`로 표시한다. 충돌하는 내용을 조용히 합치지 않고 날짜·상태·근거를 함께 보여준다.
 
-- 깨진 wikilink와 고립된 문서
-- 중복되거나 서로 모순되는 설명
-- 오래되어 현재 구현과 맞지 않는 문서
-- deprecated 문서에 누락된 대체 문서
-- 민감정보와 공개 경계 위반
-- 프로젝트 incident 중 공통 pattern으로 승격할 후보
+## 원본 자료와 Closeout
 
-문서 수가 작을 때는 구조 검사와 사람 검토를 우선하고, 별도의 벡터 DB나 완전 자동 지식 그래프는 검색 품질 문제가 확인될 때 도입한다.
+영상 transcript, 회의 기록과 긴 자료는 `sources/`에 원본으로 보존할 수 있다. 이것은 사용자에게 보이는 추가 상태가 아니라 Captured 메모를 만들 때 참고하는 내부 자료다.
 
-## Operating principles
+Codex의 `$pkm-closeout`도 별도 생명주기를 만들지 않는다. 의미 있는 작업에서 승인된 후보를 Captured inbox로 넣고, 기본적으로는 일일 curator가 Ready로 정리한다. 필요하면 같은 후보에 `준비해: <Captured ID>`를 사용해 즉시 수동 승격할 수 있다. 세부 승인 경계는 [[closeout-workflow|PKM Closeout Workflow]]에서 관리한다.
 
-- 원본과 canonical knowledge를 같은 것으로 취급하지 않는다.
-- 저장량보다 검색했을 때 다시 쓸 수 있는 품질을 우선한다.
-- 한 문서는 하나의 주요 질문에 답하게 한다.
-- 같은 설명을 복제하지 않고 authoritative note에 연결한다.
-- AI는 제안과 연결을 담당하고, 사람은 승인과 공개 경계를 책임진다.
+## 운영 원칙
 
-## Related knowledge
+- 원본 메모와 canonical 지식을 같은 것으로 취급하지 않는다.
+- 자동화는 기본 정리와 Ready 승격을 담당하되 명시적 수동 승격도 지원하고, 공개는 구체적인 사용자 승인으로 제한한다.
+- 한 문서는 하나의 주요 질문에 답한다.
+- 새 문서보다 기존 authoritative note 갱신을 우선한다.
+- 공개 실패 시 현재 서비스 중인 release를 유지한다.
+- 레거시 `decisions/`와 `publish-ready/`는 이력으로만 보존하며 새 파일을 만들지 않는다.
+
+## 관련 문서
 
 - [[index|PKM System]]
 - [[closeout-workflow|PKM Closeout Workflow]]
