@@ -5,7 +5,7 @@ description: 원큐파트너스에서 나온 회의, 구두 논의, Slack 논의
 project_id: oneq-partners
 project_kind: work
 status: active
-updated: 2026-08-21
+updated: 2026-08-24
 tags:
   - domain/quotation-brokerage
   - concern/project-history
@@ -96,3 +96,4 @@ tags:
 - [[2026-08-19|2026-08-19 논의 기록]]
 - [[2026-08-20|2026-08-20 논의 기록]]
 - [[2026-08-21|2026-08-21 논의 기록]]
+- [[2026-08-24|2026-08-24 논의 기록]]
