@@ -22,6 +22,7 @@ tags:
 
 1. [[setup|Ubuntu 홈서버 초기 구축]]
 2. [[networking|SSH와 Tailscale 네트워크 운영]]
+3. [[duranno-qt-telegram|두란노 QT 본문 Telegram 자동화]]
 
 ## Related knowledge
 
