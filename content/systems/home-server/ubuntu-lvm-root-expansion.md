@@ -1,13 +1,12 @@
 ---
 visibility: public
-public_path: systems/home-server/ubuntu-lvm-root-expansion.md
 id: systems/home-server/ubuntu-lvm-root-expansion
 title: Ubuntu LVM으로 남은 디스크 공간을 루트 파일시스템에 추가하기
 description: >-
   SSD 전체 용량과 실제 사용 가능한 파일시스템 용량의 차이, Ubuntu의 100GiB 기본 할당, LVM 확장 명령과 점검한 서버 확인
   상태.
 status: active
-updated: '2026-09-22'
+updated: 2026-09-23
 tags:
   - domain/infrastructure
   - tech/ubuntu
