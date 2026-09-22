@@ -3,7 +3,7 @@ id: beszel-healthchecks-monitoring
 title: Beszel과 Healthchecks.io 서버 감시
 description: Coolify에서 운영하는 Beszel Hub와 Agent, Telegram 알림, Healthchecks heartbeat, 백업 경계를 정리한 운영 기록
 status: active
-updated: 2026-09-19
+updated: 2026-09-23
 verified_at: 2026-09-19
 tags:
   - domain/observability
@@ -157,4 +157,3 @@ Coolify가 제공하는 HTTPS 도메인으로 Beszel 관리자 화면에 접근�
 
 - [[../home-server/index|홈서버]]
 - [[../openclaw/index|OpenClaw]]
-- [[../openclaw/runtime-inventory|OpenClaw 런타임 인벤토리]]

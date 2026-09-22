@@ -5,7 +5,7 @@ id_aliases:
 title: Home Server
 description: 개인 비서 에이전트를 운영하는 Ubuntu 홈서버의 구축과 네트워크 문서를 연결하는 지식 지도.
 status: active
-updated: 2026-07-30
+updated: 2026-09-23
 aliases:
   - 홈서버
   - Zenbook Server
@@ -23,6 +23,7 @@ tags:
 1. [[setup|Ubuntu 홈서버 초기 구축]]
 2. [[networking|SSH와 Tailscale 네트워크 운영]]
 3. [[duranno-qt-telegram|두란노 QT 본문 Telegram 자동화]]
+4. [[ubuntu-lvm-root-expansion|LVM으로 루트 디스크 공간 확장]]
 
 ## Related knowledge
 
